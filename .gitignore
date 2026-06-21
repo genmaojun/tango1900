@@ -1,0 +1,10 @@
+# ツール・一時ファイル（バージョン管理しない）
+_tools/
+__pycache__/
+*.log
+*.out
+*.tmp
+qr.svg
+qr.png
+.DS_Store
+Thumbs.db

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tango",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-3", "-m", "http.server", "8123", "--directory", "C:\\Users\\HSS_DG517\\Documents\\◆AI関連\\claude　Code\\単語アプリ\\dist"],
+      "port": 8123
+    }
+  ]
+}
