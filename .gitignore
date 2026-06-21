@@ -8,6 +8,8 @@ qr.svg
 qr.png
 *.bat
 .claude/
+# 個人情報を含む内部メモ・引き継ぎ（公開リポジトリに載せない）
+★引き継ぎ_新セッション用.md
 # 出版社PDF（公開リポジトリには載せない。データは words_1900.json に抽出済）
 target1900_source.pdf
 .DS_Store
