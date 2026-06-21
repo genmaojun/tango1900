@@ -347,7 +347,7 @@ function posOf(ja){
   if(/^～/.test(s)||/にもかかわらず|だけれども|ながら|につれて/.test(s)) return "接/前";
   if(/(する|される|させる|れる)$/.test(s)) return "動";
   if(/(な)$/.test(s)) return "形";
-  if(/(に|と)$/.test(s)&&/(的|然|時|常|分)/.test(s)) return "副";
+  if(/(に)$/.test(s)) return "副";
   if(/(い)$/.test(s)&&!/(さい|らい|たい|もない)$/.test(s)&&s.length<=6) return "形";
   if(/(る|む|ぶ|ぐ|く|つ|う|す|ねる|える)$/.test(s)&&s.length<=6&&!/(時|物|事|者|金|力|的)$/.test(s)) return "動";
   return "名";
@@ -359,6 +359,13 @@ function relOf(ja){
   const seen=new Set([...syn,...ant].map(x=>x.toLowerCase()));
   const refs=[...(ja.matchAll(/⇒\s*(\d{1,4})/g))].map(m=>byNo[parseInt(m[1])]).filter(Boolean).map(w=>w.en).filter(en=>!seen.has(en.toLowerCase()));
   return {syn,ant,refs};
+}
+/* 日→英モードの出題文：答えになる英字・用例(⇒)を隠す */
+function promptJa(ja){
+  let s=ja.replace(/[（(][^）)]*[)）]/g, m=>{ const core=m.replace(/[A-Za-z0-9⇔≒⇒・\s.\-\/，,]/g,'').replace(/[（()）]/g,''); return /[ぁ-んァ-ヶ一-龯]/.test(core)?m:''; });
+  s=s.split('⇒')[0].replace(/[≒⇔]\s*[A-Za-z0-9'’\- ]*/g,'').replace(/[A-Za-z][A-Za-z'’\-]*/g,'');
+  s=s.replace(/[（(]\s*[)）]/g,'').replace(/[、，；;,\s]+$/,'').replace(/\s{2,}/g,' ').trim();
+  return s||ja;
 }
 
 /* 発音 */
@@ -374,6 +381,7 @@ function bestVoice(lang){
 function clampRate(r){ r=parseFloat(r)||0.85; return Math.max(0.5,Math.min(1.2,r)); }
 function speak(text,rateOverride){ if(!synthOK||!text) return; try{ window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); const v=bestVoice(settings.accent); u.lang=v?v.lang:settings.accent; u.rate=rateOverride||clampRate(settings.rate); u.pitch=parseFloat(settings.pitch)||1; if(v)u.voice=v; window.speechSynthesis.speak(u);}catch(e){} }
 function speakCurrent(){ const w=queue[qi]; if(w) speak(w.en); }
+function speakExample(){ const w=queue[qi]; if(!w) return; const ex=EXAMPLES[w.en.toLowerCase()]; if(ex) speak(ex[0]); }
 
 /* 効果音（Web Audio・歓声/笛/得点/ミス） */
 let actx=null;
@@ -441,13 +449,13 @@ function showCard(){ const w=queue[qi]; flipped=false;
   const pos=posOf(w.ja); const pb=document.getElementById('posBadge'); pb.textContent=pos; pb.style.display='inline-block';
   document.getElementById('backMeaning').textContent=w.ja;
   const ex=EXAMPLES[w.en.toLowerCase()]; const eb=document.getElementById('exampleBox');
-  if(ex){ eb.style.display='block'; eb.innerHTML=`<div class="en">${ex[0]}</div><div class="ja">${ex[1]}</div><button class="speak ghost sm pron" onclick="event.stopPropagation(); speak(${JSON.stringify(ex[0])})">🔊 例文を読む</button>`; }
+  if(ex){ eb.style.display='block'; eb.innerHTML=`<div class="en"></div><div class="ja"></div><button class="speak ghost sm pron" onclick="event.stopPropagation(); speakExample()">🔊 例文を読む</button>`; eb.querySelector('.en').textContent=ex[0]; eb.querySelector('.ja').textContent=ex[1]; }
   else { eb.style.display='none'; eb.innerHTML=''; }
   const rel=relOf(w.ja); const rb=document.getElementById('relatedBox'); rb.innerHTML='';
   const addRel=(label,arr)=>{ arr.forEach(x=>{ const c=document.createElement('span'); c.className='rel-chip'; c.innerHTML=`<span class="k">${label}</span>${x}`; c.onclick=(e)=>{ e.stopPropagation(); speak(x); }; rb.appendChild(c); }); };
   addRel('≒',rel.syn); addRel('⇔',rel.ant); addRel('関連',rel.refs);
   if(settings.dir==='en2ja'){ document.getElementById('frontWord').className='word'; document.getElementById('frontWord').textContent=w.en; document.getElementById('frontHint').textContent='意味は？'; document.getElementById('speakFront').style.display='inline-flex'; document.getElementById('spdRow').style.display='flex'; }
-  else { document.getElementById('frontWord').className='word ja'; document.getElementById('frontWord').textContent=w.ja; document.getElementById('frontHint').textContent='英語は？'; document.getElementById('speakFront').style.display='none'; document.getElementById('spdRow').style.display='none'; document.getElementById('backMeaning').textContent=w.en+' ／ '+w.ja; }
+  else { document.getElementById('frontWord').className='word ja'; document.getElementById('frontWord').textContent=promptJa(w.ja); document.getElementById('frontHint').textContent='英語は？'; document.getElementById('speakFront').style.display='none'; document.getElementById('spdRow').style.display='none'; document.getElementById('backMeaning').textContent=w.en+' ／ '+w.ja; }
   updateHud(); if(settings.auto&&settings.dir==='en2ja') speak(w.en);
 }
 function flip(){ if(flipped) return; flipped=true; AC(); document.getElementById('card').classList.add('flipped'); document.getElementById('revealHint').style.display='none'; document.getElementById('answerBtns').classList.remove('hidden'); document.querySelector('#card .back-scroll').scrollTop=0; if(settings.auto&&settings.dir==='ja2en') speak(queue[qi].en); }
