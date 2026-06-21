@@ -6,5 +6,7 @@ __pycache__/
 *.tmp
 qr.svg
 qr.png
+# 出版社PDF（公開リポジトリには載せない。データは words_1900.json に抽出済）
+target1900_source.pdf
 .DS_Store
 Thumbs.db
