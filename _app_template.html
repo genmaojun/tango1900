@@ -107,6 +107,9 @@
   .rc-next{font-size:12px;color:var(--muted);margin-top:8px;text-align:center;font-weight:700;}
   .badge-pop{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);font-size:30px;font-weight:800;color:#fff;background:rgba(20,24,31,.82);border:2px solid var(--gold);border-radius:16px;padding:12px 22px;pointer-events:none;z-index:60;white-space:nowrap;animation:badgePop 1s ease-out forwards;}
   @keyframes badgePop{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}30%{transform:translate(-50%,-70%) scale(1.1);opacity:1}100%{transform:translate(-50%,-95%) scale(1);opacity:0}}
+  @keyframes mcCross{0%{transform:translateX(-70px) translateY(0)}20%{transform:translateX(20vw) translateY(-12px)}40%{transform:translateX(40vw) translateY(0)}60%{transform:translateX(60vw) translateY(-12px)}80%{transform:translateX(80vw) translateY(0)}100%{transform:translateX(calc(100vw + 70px)) translateY(0)}}
+  @keyframes mcCrossR{0%{transform:translateX(calc(100vw + 70px)) scaleX(-1)}30%{transform:translateX(70vw) scaleX(-1) translateY(-12px)}60%{transform:translateX(40vw) scaleX(-1) translateY(0)}100%{transform:translateX(-70px) scaleX(-1)}}
+  .mc-cross{position:fixed;left:0;top:40%;font-size:40px;z-index:55;pointer-events:none;animation:mcCross 5s linear forwards;filter:drop-shadow(0 3px 4px rgba(0,0,0,.4));}
   /* 発音チャレンジ */
   .mic-card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:24px;text-align:center;margin:4px 0 10px;}
   .mic-word{font-size:40px;font-weight:800;} .mic-ja{font-size:15px;color:var(--muted);}
@@ -294,7 +297,8 @@
       <div class="set-row"><div class="lbl">めくったら例文も読む<small>リスニング強化・耳から定着</small></div><div class="switch" id="swAutoEx" onclick="toggleAutoEx()"><i></i></div></div>
       <div class="set-row"><div class="lbl">1試合の語数<small>電車のひと区間ぶん</small></div><select class="sel" id="selSize" onchange="setSize(this.value)"><option value="10">10語</option><option value="15">15語</option><option value="20">20語</option><option value="30">30語</option><option value="50">50語</option></select></div>
     </div>
-    <button class="btn sec" style="margin-top:16px;" onclick="resetAll()">🗑 学習記録・ランクをリセット</button>
+    <button class="btn green" style="margin-top:16px;" onclick="forceUpdate()">⬇️ 最新版に更新（記録はそのまま）</button>
+    <button class="btn sec" style="margin-top:10px;" onclick="resetAll()">🗑 学習記録・ランクをリセット</button>
     <div class="note" id="voiceHelp">📣 <b>ネイティブ級の発音</b>（iPhone）：設定→アクセシビリティ→読み上げコンテンツ→声→英語→「Siri」や「高品質」をDL→ここで選択。<br><span id="verLabel"></span> 記録はこのiPhone内のみ（オフライン）。</div>
   </section>
 
@@ -302,7 +306,7 @@
 
 <script>
 const WORDS = __WORDS_JSON__;
-const APP_VERSION = "4.4";
+const APP_VERSION = "4.5";
 const TOTAL = WORDS.length;
 const byNo={}; WORDS.forEach(w=>byNo[w.no]=w);
 const byEn={}; WORDS.forEach(w=>{ byEn[w.en.toLowerCase()]=w; });
@@ -514,10 +518,11 @@ function requeue(w,gap,maxT){ const c=retryMap[w.no]||0; if(c>=maxT) return; ret
 function flashRally(){ const el=document.getElementById('rally'); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
 function spikeBall(){ const s=document.createElement('div'); s.className='spike'; s.textContent='🏐'; document.body.appendChild(s); setTimeout(()=>{ if(s.parentNode) s.parentNode.removeChild(s); },680); }
 function ralleyBadge(){ var words={5:'🎯 ヘッドショット！',10:'🔥 エース！',15:'💎 クラッチ！',20:'⛏️ ダイヤ獲得！',25:'⚡ レディアント級！',30:'👑 レジェンド！'}; var t=words[rally]; if(!t) return; var s=document.createElement('div'); s.className='badge-pop'; s.textContent=t; document.body.appendChild(s); setTimeout(function(){ if(s.parentNode)s.parentNode.removeChild(s); },1000); }
+function crossMinecraft(){ var ch=['🟩','🐷','🐮','🐔','🧟','🐺','💎','⛏️','🧨','🗡️','🐝','🦇','🐸','🪓','🏹','🐠']; var c=ch[Math.floor(Math.random()*ch.length)]; var el=document.createElement('div'); el.className='mc-cross'; el.textContent=c; el.style.top=(16+Math.random()*64)+'%'; var dur=4+Math.random()*3; el.style.animationDuration=dur+'s'; if(Math.random()<0.5) el.style.animationName='mcCrossR'; document.body.appendChild(el); setTimeout(function(){ if(el.parentNode)el.parentNode.removeChild(el); }, dur*1000+400); }
 function answer(grade){ const w=queue[qi]; const t=today(); let p=prog[w.no]||{s:'new',ease:2.5,interval:0,reps:0,c:0,w:0,v:0,lapses:0}; if(p.ease==null)p.ease=2.5; const q=grade==='o'?5:grade==='d'?3:1;
   if(q<3){ p.w++; p.lapses=(p.lapses||0)+1; p.reps=0; p.interval=0; p.due=t; p.s='weak'; rally=0; sess.x++; requeue(w,4,3); sfxMiss(); }
   else { if(grade==='o')p.c++; else p.v=(p.v||0)+1; p.ease=Math.max(1.3,p.ease+(0.1-(5-q)*(0.08+(5-q)*0.02))); if(p.reps===0)p.interval=1; else if(p.reps===1)p.interval=(q===3?2:3); else p.interval=Math.max(1,Math.round((p.interval||1)*p.ease*(q===3?0.6:1))); p.reps++; p.due=t+p.interval; p.s=(grade==='o'&&p.interval>=4)?'known':'learning';
-    if(grade==='o'){ rally++; if(rally>game.maxRally)game.maxRally=rally; const gain=10+Math.min(rally,12); sess.pts+=gain; game.points+=gain; sess.o++; flashRally(); spikeBall(); sfxPoint(); if(rally%5===0){ sfxCheer(); ralleyBadge(); } }
+    if(grade==='o'){ rally++; if(rally>game.maxRally)game.maxRally=rally; const gain=10+Math.min(rally,12); sess.pts+=gain; game.points+=gain; sess.o++; flashRally(); spikeBall(); sfxPoint(); if(Math.random()<0.13) crossMinecraft(); if(rally%5===0){ sfxCheer(); ralleyBadge(); } }
     else { sess.d++; sess.pts+=4; game.points+=4; } if(grade==='d') requeue(w,3,2);
   }
   p.seen=t; prog[w.no]=p; saveProg(); saveGame(); qi++; updateHud(); if(qi>=queue.length) finishSession(); else showCard();
@@ -595,6 +600,7 @@ function toggleAuto(){ settings.auto=!settings.auto; saveSet(); renderSettings()
 function toggleAutoEx(){ settings.autoEx=!settings.autoEx; saveSet(); renderSettings(); }
 function toggleSound(){ settings.sound=!settings.sound; saveSet(); renderSettings(); if(settings.sound){ AC(); sfxPoint(); } }
 function resetAll(){ if(confirm('学習記録・苦手・ランク・連続記録をすべて消します。よろしいですか？')){ prog={}; game={points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0}; saveProg(); saveGame(); renderHome(); alert('リセットしました'); go('home'); } }
+function forceUpdate(){ if(!confirm('最新版に更新します。学習記録・ランク・連続日数はそのまま残ります。更新しますか？')) return; var done=function(){ try{location.reload(true);}catch(e){location.reload();} }; try{ if('serviceWorker' in navigator){ navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ try{r.unregister();}catch(e){} }); }); } if(window.caches){ caches.keys().then(function(ks){ return Promise.all(ks.map(function(k){return caches.delete(k);})); }).then(done).catch(done); setTimeout(done,1800); } else done(); }catch(e){ done(); } }
 
 /* 起動 */
 load(); applyTheme(); renderHome();
