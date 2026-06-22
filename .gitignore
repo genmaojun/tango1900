@@ -14,3 +14,7 @@ qr.png
 target1900_source.pdf
 .DS_Store
 Thumbs.db
+# データ生成の中間ファイル・一時スクリプト（今回限りの生成ツール）
+_gen/
+gen_split.py
+merge_gen.py

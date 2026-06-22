@@ -19,65 +19,67 @@
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html,body{margin:0;padding:0;height:100%;}
   body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none;user-select:none;-webkit-user-select:none;}
-  #app{max-width:540px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 8px) 14px calc(env(safe-area-inset-bottom) + 14px);}
+  #app{max-width:540px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 8px) 12px calc(env(safe-area-inset-bottom) + 16px);}
   .screen{display:none;flex:1;flex-direction:column;} .screen.active{display:flex;}
   header{display:flex;align-items:center;gap:10px;padding:6px 2px 10px;}
-  .brand{font-weight:800;font-size:18px;} .brand small{display:block;font-weight:600;font-size:11px;color:var(--muted);}
+  .brand{font-weight:800;font-size:19px;} .brand small{display:block;font-weight:600;font-size:12px;color:var(--muted);}
   .spacer{flex:1;}
-  .icon-btn{width:42px;height:42px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:18px;display:flex;align-items:center;justify-content:center;} .icon-btn:active{transform:scale(.94);}
+  .icon-btn{width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:20px;display:flex;align-items:center;justify-content:center;} .icon-btn:active{transform:scale(.94);}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);} .pad{padding:16px;}
   @keyframes bounceBall{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-9px) rotate(8deg)}}
   .vball{display:inline-block;animation:bounceBall 1.7s ease-in-out infinite;}
   @keyframes spikePop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-25deg);opacity:0}40%{transform:translate(-50%,-60%) scale(1.5) rotate(12deg);opacity:1}100%{transform:translate(-50%,-75%) scale(1) rotate(0);opacity:0}}
   .spike{position:fixed;left:50%;top:42%;font-size:96px;pointer-events:none;z-index:60;animation:spikePop .65s ease-out forwards;}
   .status-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;}
-  .chip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:9px 6px;text-align:center;box-shadow:var(--shadow);} .chip b{display:block;font-size:17px;line-height:1.1;} .chip span{font-size:10px;color:var(--muted);}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:9px 6px;text-align:center;box-shadow:var(--shadow);} .chip b{display:block;font-size:19px;line-height:1.1;} .chip span{font-size:11px;color:var(--muted);}
   .ring-wrap{display:flex;align-items:center;gap:14px;} .ring{width:84px;height:84px;flex:none;}
   .ring .bgc{stroke:var(--line);} .ring .fgc{stroke:var(--primary);stroke-linecap:round;transition:stroke-dashoffset .6s;}
   .ring-label{font-size:20px;font-weight:800;fill:var(--text);} .ring-sub{font-size:9px;fill:var(--muted);}
   .rankbar{height:9px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:8px;} .rankbar i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--gold));border-radius:6px;}
   .cta{display:flex;align-items:center;gap:14px;width:100%;border:none;border-radius:18px;padding:16px 18px;margin-top:12px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;box-shadow:var(--shadow);} .cta:active{transform:translateY(1px) scale(.995);}
-  .cta .big{font-size:30px;} .cta .t{flex:1;text-align:left;} .cta .t b{font-size:18px;font-weight:800;display:block;} .cta .t small{font-size:12px;opacity:.92;} .cta .go{font-size:22px;}
+  .cta .big{font-size:32px;} .cta .t{flex:1;text-align:left;} .cta .t b{font-size:20px;font-weight:800;display:block;} .cta .t small{font-size:13px;opacity:.92;} .cta .go{font-size:24px;}
   .cta.speak2{background:linear-gradient(135deg,#1f8f5a,#2fd07a);margin-top:10px;} .cta.speak2 .big{font-size:26px;}
   .tipcard{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:14px;padding:12px 14px;margin-top:12px;box-shadow:var(--shadow);}
   .tipcard .ti{font-size:22px;} .tipcard b{font-size:13px;} .tipcard p{margin:2px 0 0;font-size:12px;color:var(--muted);line-height:1.5;}
   .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
   .tile{display:flex;flex-direction:column;gap:3px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);color:var(--text);} .tile:active{transform:scale(.98);}
-  .tile .ic{font-size:22px;} .tile b{font-size:14px;} .tile span{font-size:11px;color:var(--muted);} .tile.warn{border-color:var(--primary);}
-  .note{font-size:12px;color:var(--muted);line-height:1.6;padding:14px 6px;} .kbd{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-weight:700;}
+  .tile .ic{font-size:26px;} .tile b{font-size:16px;} .tile span{font-size:12px;color:var(--muted);} .tile.warn{border-color:var(--primary);}
+  .note{font-size:13px;color:var(--muted);line-height:1.65;padding:14px 6px;} .kbd{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-weight:700;}
   h2.sect{font-size:13px;margin:18px 4px 8px;color:var(--muted);font-weight:700;}
   .sec-part{font-size:13px;font-weight:800;color:var(--primary);margin:16px 4px 6px;}
   .sec-item{display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid var(--line);} .sec-item:last-child{border-bottom:none;} .sec-item:active{background:var(--card2);}
   .sec-name{font-weight:700;font-size:15px;} .sec-range{font-size:11px;color:var(--muted);}
   .mini-bar{flex:1;height:8px;background:var(--line);border-radius:5px;overflow:hidden;} .mini-bar i{display:block;height:100%;background:var(--green);border-radius:5px;} .mini-num{font-size:11px;color:var(--muted);min-width:46px;text-align:right;} .chev{color:var(--muted);font-size:18px;}
   #study,#speak{justify-content:space-between;}
-  .study-top{display:flex;align-items:center;gap:10px;padding:2px 2px 8px;} .close{font-size:22px;color:var(--muted);width:32px;text-align:center;}
-  .pbar{flex:1;height:9px;background:var(--line);border-radius:6px;overflow:hidden;} .pbar i{display:block;height:100%;background:var(--primary);width:0;transition:width .25s;} .pcount{font-size:12px;color:var(--muted);min-width:48px;text-align:right;}
-  .hud{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px 6px;} .rally{font-size:14px;font-weight:800;color:var(--primary);} .rally.flash{animation:pop .4s;}
-  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}} .score{font-size:13px;font-weight:700;color:var(--muted);} .score b{color:var(--gold);}
-  .card{flex:1;position:relative;perspective:1400px;min-height:330px;margin:4px 0 10px;}
+  .study-top{display:flex;align-items:center;gap:12px;padding:4px 2px 10px;}
+  .close{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:var(--card2);color:var(--text);font-size:22px;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;flex:none;} .close:active{transform:scale(.92);background:var(--red-bg);color:var(--red);border-color:var(--red);}
+  .pbar{flex:1;height:10px;background:var(--line);border-radius:6px;overflow:hidden;} .pbar i{display:block;height:100%;background:var(--primary);width:0;transition:width .25s;} .pcount{font-size:14px;font-weight:700;color:var(--muted);min-width:54px;text-align:right;}
+  .hud{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 2px 6px;} .rally{font-size:16px;font-weight:800;color:var(--primary);} .rally.flash{animation:pop .4s;}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}} .score{font-size:14px;font-weight:700;color:var(--muted);} .score b{color:var(--gold);}
+  .card{flex:1;position:relative;perspective:1400px;min-height:270px;margin:2px 0 8px;}
   .card-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.7,.2,1);} .card.flipped .card-inner{transform:rotateY(180deg);}
   .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;text-align:center;}
   .face.back{transform:rotateY(180deg);justify-content:flex-start;align-items:stretch;padding:14px;overflow:hidden;}
   .back-scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:9px;padding:26px 6px 8px;text-align:center;}
   .tag{position:absolute;top:13px;left:15px;font-size:11px;color:var(--muted);font-weight:700;z-index:2;}
-  .word{font-size:38px;font-weight:800;line-height:1.15;word-break:break-word;} .word.ja{font-size:27px;}
+  .word{font-size:44px;font-weight:800;line-height:1.12;word-break:break-word;} .word.ja{font-size:31px;}
   .pos-badge{display:inline-block;background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:2px 10px;border-radius:999px;}
   .pron-hint{margin-top:6px;font-size:13px;color:var(--muted);}
   .speak{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;border:none;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:700;} .speak:active{transform:scale(.96);} .speak.ghost{background:var(--card2);color:var(--text);border:1px solid var(--line);} .speak.sm{padding:7px 14px;font-size:13px;margin-top:0;}
   .spd{margin-top:12px;display:flex;gap:6px;align-items:center;justify-content:center;} .spd .lab{font-size:11px;color:var(--muted);}
   .spd button{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;} .spd button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
   .flip-hint{font-size:12px;color:var(--muted);margin-top:4px;}
-  .word-sm{font-size:24px;font-weight:800;}
-  .meaning{font-size:18px;font-weight:700;line-height:1.5;max-width:96%;}
+  .word-sm{font-size:27px;font-weight:800;}
+  .meaning{font-size:22px;font-weight:700;line-height:1.5;max-width:98%;}
   .example{background:var(--card2);border-radius:12px;padding:10px 12px;width:100%;text-align:left;}
-  .example .en{font-size:15px;font-weight:700;line-height:1.4;} .example .ja{font-size:12px;color:var(--muted);margin-top:3px;} .example .pron{margin-top:6px;}
+  .example .en{font-size:16px;font-weight:700;line-height:1.45;} .example .ja{font-size:13px;color:var(--muted);margin-top:3px;} .example .pron{margin-top:6px;}
   .related{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%;}
   .rel-chip{display:inline-flex;align-items:center;gap:4px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;} .rel-chip .k{color:var(--muted);font-size:10px;}
-  .answer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;} .answer.hidden{visibility:hidden;}
-  .ans{border:none;border-radius:16px;padding:15px 4px;font-size:16px;font-weight:800;color:#fff;line-height:1.15;} .ans:active{transform:translateY(1px) scale(.98);} .ans small{display:block;font-weight:600;font-size:10px;opacity:.92;margin-top:3px;}
+  .answer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;} .answer.hidden{visibility:hidden;}
+  .ans{border:none;border-radius:16px;padding:18px 4px;font-size:19px;font-weight:800;color:#fff;line-height:1.12;} .ans:active{transform:translateY(1px) scale(.98);} .ans small{display:block;font-weight:600;font-size:11px;opacity:.92;margin-top:4px;}
   .ans.x{background:var(--red);} .ans.d{background:var(--amber);} .ans.o{background:var(--green);}
-  .reveal-hint{text-align:center;color:var(--muted);font-size:13px;padding:16px 0;}
+  .reveal-hint{text-align:center;color:var(--muted);font-size:14px;padding:8px 0;}
+  .flipbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;border-radius:18px;padding:18px;font-size:19px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--primary));box-shadow:var(--shadow);} .flipbtn:active{transform:translateY(1px) scale(.99);} .flipbtn .ic{font-size:22px;}
   .result-big{font-size:42px;text-align:center;} .result-msg{text-align:center;color:var(--muted);margin-top:2px;font-weight:700;}
   .stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;} .stat{background:var(--card2);border-radius:14px;padding:10px 4px;text-align:center;} .stat b{display:block;font-size:19px;} .stat span{font-size:10px;color:var(--muted);}
   .stat.o b{color:var(--green);} .stat.d b{color:var(--amber);} .stat.x b{color:var(--red);}
@@ -101,6 +103,15 @@
   .mic-btn{width:120px;height:120px;border-radius:50%;border:none;background:linear-gradient(135deg,#1f8f5a,#2fd07a);color:#fff;font-size:44px;box-shadow:var(--shadow);} .mic-btn:active{transform:scale(.95);} .mic-btn.live{animation:mpulse 1s infinite;}
   @keyframes mpulse{0%{box-shadow:0 0 0 0 rgba(47,208,122,.5)}100%{box-shadow:0 0 0 26px rgba(47,208,122,0)}}
   .mic-res{font-size:15px;font-weight:700;min-height:24px;} .mic-heard{font-size:13px;color:var(--muted);}
+  /* No.範囲で確認 */
+  .range-h{font-size:16px;font-weight:800;margin-bottom:10px;}
+  .range-row{display:flex;align-items:center;gap:10px;}
+  .rangein{flex:1;min-width:0;border:1.5px solid var(--line);background:var(--card2);color:var(--text);border-radius:14px;padding:14px 8px;font-size:24px;font-weight:800;text-align:center;-webkit-appearance:none;} .rangein:focus{outline:none;border-color:var(--primary);}
+  .range-sep{font-size:20px;font-weight:800;color:var(--muted);flex:none;}
+  .range-quick{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:12px;} .range-quick .range-lab{font-size:12px;color:var(--muted);}
+  .range-quick button{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:999px;padding:9px 15px;font-size:15px;font-weight:800;} .range-quick button:active{background:var(--primary);color:#fff;border-color:var(--primary);}
+  .range-go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:16px;padding:16px;font-size:18px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:var(--shadow);margin-top:12px;} .range-go:active{transform:translateY(1px) scale(.99);}
+  .range-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:10px;} .range-note #rangeHint{color:var(--primary);font-weight:700;}
 </style>
 </head>
 <body>
@@ -129,7 +140,7 @@
     <div class="tiles">
       <button class="tile warn" id="reviewTile" onclick="startWeak()"><div class="ic">🔁</div><b>苦手を特訓</b><span id="weakLabel">0語</span></button>
       <button class="tile" onclick="go('coach')"><div class="ic">🧠</div><b>AIコーチ</b><span>弱点分析＆予報</span></button>
-      <button class="tile" onclick="go('sections')"><div class="ic">📚</div><b>範囲を選ぶ</b><span>セクション別</span></button>
+      <button class="tile" onclick="go('sections')"><div class="ic">📖</div><b>範囲・番号で確認</b><span>No.／ページ</span></button>
       <button class="tile" onclick="startEiken()"><div class="ic">🎯</div><b>英検2級</b><span>Part1・2</span></button>
       <button class="tile" onclick="go('ranks')"><div class="ic">🏅</div><b>ランク・記録</b><span id="recLabel">最高ラリー 0</span></button>
       <button class="tile" onclick="startMarch()"><div class="ic">🔥</div><b>MARCH難単語</b><span>Part3</span></button>
@@ -138,7 +149,23 @@
   </section>
 
   <!-- 範囲 -->
-  <section id="sections" class="screen"><header><button class="icon-btn" onclick="go('home')">‹</button><div class="brand" style="font-size:16px;">範囲を選ぶ<small>100語ごと</small></div></header><div id="secList"></div><div style="height:20px"></div></section>
+  <section id="sections" class="screen">
+    <header><button class="icon-btn" onclick="go('home')">‹</button><div class="brand" style="font-size:16px;">範囲を選ぶ<small>No.で確認 / 100語ごと</small></div></header>
+    <div class="panel pad">
+      <div class="range-h">🔢 ページ（番号）で確認</div>
+      <div class="range-row">
+        <input class="rangein" id="rangeFrom" type="number" inputmode="numeric" min="1" max="1900" placeholder="開始" oninput="updateRangeHint()">
+        <span class="range-sep">〜</span>
+        <input class="rangein" id="rangeTo" type="number" inputmode="numeric" min="1" max="1900" placeholder="終了" oninput="updateRangeHint()">
+      </div>
+      <div class="range-quick"><span class="range-lab">終了を自動：</span><button onclick="setRangeLen(10)">+10</button><button onclick="setRangeLen(20)">+20</button><button onclick="setRangeLen(50)">+50</button><button onclick="setRangeLen(100)">+100</button></div>
+      <button class="range-go" onclick="startRangeInput()">▶ この範囲を確認する</button>
+      <div class="range-note">本の大きな見出し番号（No.1〜1900）と同じ。例：301〜350。<span id="rangeHint"></span></div>
+    </div>
+    <h2 class="sect">セクションから選ぶ（100語ごと）</h2>
+    <div id="secList"></div>
+    <div style="height:20px"></div>
+  </section>
 
   <!-- 学習 -->
   <section id="study" class="screen">
@@ -169,7 +196,7 @@
       </div>
     </div>
     <div id="answerArea">
-      <div class="reveal-hint" id="revealHint">カードをタップ＝答えを表示</div>
+      <button class="flipbtn" id="flipBtn" onclick="flip()"><span class="ic">🔄</span> めくって答えを見る</button>
       <div class="answer hidden" id="answerBtns">
         <button class="ans x" onclick="answer('x')">✕ ミス<small>わからない</small></button>
         <button class="ans d" onclick="answer('d')">△ あいまい<small>もう一度</small></button>
@@ -259,7 +286,7 @@
 
 <script>
 const WORDS = __WORDS_JSON__;
-const APP_VERSION = "4.0";
+const APP_VERSION = "4.1";
 const TOTAL = WORDS.length;
 const byNo={}; WORDS.forEach(w=>byNo[w.no]=w);
 const byEn={}; WORDS.forEach(w=>{ byEn[w.en.toLowerCase()]=w; });
@@ -381,7 +408,7 @@ function bestVoice(lang){
 function clampRate(r){ r=parseFloat(r)||0.85; return Math.max(0.5,Math.min(1.2,r)); }
 function speak(text,rateOverride){ if(!synthOK||!text) return; try{ window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); const v=bestVoice(settings.accent); u.lang=v?v.lang:settings.accent; u.rate=rateOverride||clampRate(settings.rate); u.pitch=parseFloat(settings.pitch)||1; if(v)u.voice=v; window.speechSynthesis.speak(u);}catch(e){} }
 function speakCurrent(){ const w=queue[qi]; if(w) speak(w.en); }
-function speakExample(){ const w=queue[qi]; if(!w) return; const ex=EXAMPLES[w.en.toLowerCase()]; if(ex) speak(ex[0]); }
+function speakExample(){ const w=queue[qi]; if(!w) return; const sentence=w.ex_en||((EXAMPLES[w.en.toLowerCase()]||[])[0]); if(sentence) speak(sentence); }
 
 /* 効果音（Web Audio・歓声/笛/得点/ミス） */
 let actx=null;
@@ -433,6 +460,13 @@ function startSession(words,opt){ opt=opt||{}; let list=words.slice();
 function startToday(){ lastMaker=startToday; const t=today(); const due=WORDS.filter(w=>prog[w.no]&&(prog[w.no].due||0)<=t); const news=WORDS.filter(w=>!prog[w.no]);
   if(settings.order!=='order'){ shuffle(due); shuffle(news); } else { due.sort((a,b)=>a.no-b.no); } let list=due.concat(news); if(!list.length) list=WORDS.slice(); startSession(list,{keepOrder:true}); }
 function startSection(s){ lastMaker=()=>startSection(s); startSession(WORDS.filter(w=>w.section===s),{prioritize:true}); }
+function setRangeLen(n){ let f=parseInt(document.getElementById('rangeFrom').value)||1; f=Math.min(Math.max(f,1),TOTAL); document.getElementById('rangeFrom').value=f; document.getElementById('rangeTo').value=Math.min(f+n-1,TOTAL); updateRangeHint(); }
+function updateRangeHint(){ const el=document.getElementById('rangeHint'); if(!el) return; let f=parseInt(document.getElementById('rangeFrom').value), t=parseInt(document.getElementById('rangeTo').value); if(f&&t&&f<=t&&f>=1&&t<=TOTAL){ const sF=Math.ceil(f/100), sT=Math.ceil(t/100); el.textContent=` → ${t-f+1}語・セクション${sF===sT?sF:sF+'〜'+sT}`; } else el.textContent=''; }
+function startRangeInput(){ let from=parseInt(document.getElementById('rangeFrom').value), to=parseInt(document.getElementById('rangeTo').value);
+  if(!from){ alert('開始の番号を入れてね（例：301）'); return; } if(!to) to=from;
+  from=Math.min(Math.max(from,1),TOTAL); to=Math.min(Math.max(to,1),TOTAL); if(from>to){ const x=from; from=to; to=x; }
+  startRange(from,to); }
+function startRange(from,to){ lastMaker=()=>startRange(from,to); const list=WORDS.filter(w=>w.no>=from&&w.no<=to); if(!list.length){ alert('その範囲に単語がありません'); return; } startSession(list,{keepOrder:true,all:true}); }
 function startWeak(){ const w=weakWords(); if(!w.length){ alert('いま苦手な単語はありません。ナイスキープ！'); return; } lastMaker=startWeak; startSession(w,{all:true}); }
 function startEiken(){ lastMaker=startEiken; startSession(WORDS.filter(w=>w.part<=2),{prioritize:true}); }
 function startMarch(){ lastMaker=startMarch; startSession(WORDS.filter(w=>w.part===3),{prioritize:true}); }
@@ -440,15 +474,15 @@ let coachFocusList=[];
 function startCoachFocus(){ if(!coachFocusList.length){ startWeak(); return; } lastMaker=startCoachFocus; startSession(coachFocusList.slice(),{all:true}); }
 function updateHud(){ document.getElementById('rally').textContent=`🏐 ラリー ${rally}`; document.getElementById('sessPts').textContent=sess?sess.pts:0; document.getElementById('pcount').textContent=`${Math.min(qi+1,queue.length)} / ${queue.length}`; document.getElementById('pbarFill').style.width=`${qi/queue.length*100}%`; }
 function showCard(){ const w=queue[qi]; flipped=false;
-  document.getElementById('card').classList.remove('flipped'); document.getElementById('answerBtns').classList.add('hidden'); document.getElementById('revealHint').style.display='block';
+  document.getElementById('card').classList.remove('flipped'); document.getElementById('answerBtns').classList.add('hidden'); document.getElementById('flipBtn').style.display='flex';
   document.querySelectorAll('#spdRow button').forEach(b=>b.classList.toggle('on',Math.abs(parseFloat(b.dataset.r)-settings.rate)<0.03));
   const st={new:'未学習',weak:'苦手',learning:'復習中',known:'覚えた'}[statusOf(w.no)];
   document.getElementById('tagFront').textContent=`No.${w.no}・${PART_NAME[w.part].split(' ')[0]} ${PART_NAME[w.part].split(' ')[1]}`; document.getElementById('tagBack').textContent=st;
   // 裏面の充実情報
   document.getElementById('backWord').textContent=w.en;
-  const pos=posOf(w.ja); const pb=document.getElementById('posBadge'); pb.textContent=pos; pb.style.display='inline-block';
+  const pos=(w.pos||posOf(w.ja)); const pb=document.getElementById('posBadge'); pb.textContent=pos; pb.style.display='inline-block';
   document.getElementById('backMeaning').textContent=w.ja;
-  const ex=EXAMPLES[w.en.toLowerCase()]; const eb=document.getElementById('exampleBox');
+  const ex=(w.ex_en?[w.ex_en,w.ex_ja]:EXAMPLES[w.en.toLowerCase()]); const eb=document.getElementById('exampleBox');
   if(ex){ eb.style.display='block'; eb.innerHTML=`<div class="en"></div><div class="ja"></div><button class="speak ghost sm pron" onclick="event.stopPropagation(); speakExample()">🔊 例文を読む</button>`; eb.querySelector('.en').textContent=ex[0]; eb.querySelector('.ja').textContent=ex[1]; }
   else { eb.style.display='none'; eb.innerHTML=''; }
   const rel=relOf(w.ja); const rb=document.getElementById('relatedBox'); rb.innerHTML='';
@@ -458,7 +492,7 @@ function showCard(){ const w=queue[qi]; flipped=false;
   else { document.getElementById('frontWord').className='word ja'; document.getElementById('frontWord').textContent=promptJa(w.ja); document.getElementById('frontHint').textContent='英語は？'; document.getElementById('speakFront').style.display='none'; document.getElementById('spdRow').style.display='none'; document.getElementById('backMeaning').textContent=w.en+' ／ '+w.ja; }
   updateHud(); if(settings.auto&&settings.dir==='en2ja') speak(w.en);
 }
-function flip(){ if(flipped) return; flipped=true; AC(); document.getElementById('card').classList.add('flipped'); document.getElementById('revealHint').style.display='none'; document.getElementById('answerBtns').classList.remove('hidden'); document.querySelector('#card .back-scroll').scrollTop=0; if(settings.auto&&settings.dir==='ja2en') speak(queue[qi].en); }
+function flip(){ if(flipped) return; flipped=true; AC(); document.getElementById('card').classList.add('flipped'); document.getElementById('flipBtn').style.display='none'; document.getElementById('answerBtns').classList.remove('hidden'); document.querySelector('#card .back-scroll').scrollTop=0; if(settings.auto&&settings.dir==='ja2en') speak(queue[qi].en); }
 function requeue(w,gap,maxT){ const c=retryMap[w.no]||0; if(c>=maxT) return; retryMap[w.no]=c+1; const pos=Math.min(queue.length,qi+gap); queue.splice(pos,0,w); }
 function flashRally(){ const el=document.getElementById('rally'); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
 function spikeBall(){ const s=document.createElement('div'); s.className='spike'; s.textContent='🏐'; document.body.appendChild(s); setTimeout(()=>{ if(s.parentNode) s.parentNode.removeChild(s); },680); }

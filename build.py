@@ -3,7 +3,7 @@
 import json, shutil
 from pathlib import Path
 
-BASE = Path(r"C:\Users\HSS_DG517\Documents\◆AI関連\claude　Code\単語アプリ")
+BASE = Path(__file__).resolve().parent
 DIST = BASE / "dist"
 
 # 1) アプリ本体 index.html
@@ -46,7 +46,7 @@ icon = (
 (BASE / "icon.svg").write_text(icon, encoding="utf-8")
 
 # 4) Service Worker（オフラインキャッシュ）
-sw = """const CACHE='tango1900-v4';
+sw = """const CACHE='tango1900-v5';
 const ASSETS=['./','./index.html','./manifest.json','./icon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
