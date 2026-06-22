@@ -72,7 +72,7 @@
   .word-sm{font-size:27px;font-weight:800;}
   .meaning{font-size:22px;font-weight:700;line-height:1.5;max-width:98%;}
   .example{background:var(--card2);border-radius:12px;padding:10px 12px;width:100%;text-align:left;}
-  .example .en{font-size:16px;font-weight:700;line-height:1.45;} .example .ja{font-size:13px;color:var(--muted);margin-top:3px;} .example .pron{margin-top:6px;}
+  .example .en{font-size:16px;font-weight:700;line-height:1.5;} .example .en .hl{color:var(--red);font-weight:800;} .example .ja{font-size:15px;color:var(--text);margin-top:6px;line-height:1.55;} .example .pron{margin-top:8px;}
   .related{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%;}
   .rel-chip{display:inline-flex;align-items:center;gap:4px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;} .rel-chip .k{color:var(--muted);font-size:10px;}
   .answer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;} .answer.hidden{visibility:hidden;}
@@ -276,6 +276,7 @@
       <div class="set-row"><div class="lbl">声を試す<small>選んだ声で発音</small></div><button class="icon-btn" style="width:auto;padding:0 16px;" onclick="speak('Nice receive! Go for the spike!')">🔊 試聴</button></div>
       <div class="set-row"><div class="lbl">出題の向き<small>英→日 / 日→英</small></div><div class="seg" id="segDir"><button data-v="en2ja" onclick="setDir('en2ja')">英→日</button><button data-v="ja2en" onclick="setDir('ja2en')">日→英</button></div></div>
       <div class="set-row"><div class="lbl">カードで自動発音<small>AirPods推奨</small></div><div class="switch" id="swAuto" onclick="toggleAuto()"><i></i></div></div>
+      <div class="set-row"><div class="lbl">めくったら例文も読む<small>リスニング強化・耳から定着</small></div><div class="switch" id="swAutoEx" onclick="toggleAutoEx()"><i></i></div></div>
       <div class="set-row"><div class="lbl">1試合の語数<small>電車のひと区間ぶん</small></div><select class="sel" id="selSize" onchange="setSize(this.value)"><option value="10">10語</option><option value="15">15語</option><option value="20">20語</option><option value="30">30語</option><option value="50">50語</option></select></div>
     </div>
     <button class="btn sec" style="margin-top:16px;" onclick="resetAll()">🗑 学習記録・ランクをリセット</button>
@@ -286,7 +287,7 @@
 
 <script>
 const WORDS = __WORDS_JSON__;
-const APP_VERSION = "4.1";
+const APP_VERSION = "4.2";
 const TOTAL = WORDS.length;
 const byNo={}; WORDS.forEach(w=>byNo[w.no]=w);
 const byEn={}; WORDS.forEach(w=>{ byEn[w.en.toLowerCase()]=w; });
@@ -349,7 +350,7 @@ let prog={}, settings={}, game={};
 function readJSON(k,d){ try{ return JSON.parse(localStorage.getItem(k))||d; }catch(e){ return d; } }
 function load(){
   prog=readJSON(SKEY+"_prog",{});
-  settings=Object.assign({theme:"volley",sound:true,accent:"en-US",rate:0.85,pitch:1,dir:"en2ja",auto:true,order:"srs",size:20,voice:""}, readJSON(SKEY+"_set",{}));
+  settings=Object.assign({theme:"volley",sound:true,accent:"en-US",rate:0.85,pitch:1,dir:"en2ja",auto:true,order:"srs",size:20,voice:"",autoEx:true}, readJSON(SKEY+"_set",{}));
   game=Object.assign({points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0}, readJSON(SKEY+"_game",{}));
 }
 function saveProg(){ localStorage.setItem(SKEY+"_prog",JSON.stringify(prog)); }
@@ -409,6 +410,7 @@ function clampRate(r){ r=parseFloat(r)||0.85; return Math.max(0.5,Math.min(1.2,r
 function speak(text,rateOverride){ if(!synthOK||!text) return; try{ window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); const v=bestVoice(settings.accent); u.lang=v?v.lang:settings.accent; u.rate=rateOverride||clampRate(settings.rate); u.pitch=parseFloat(settings.pitch)||1; if(v)u.voice=v; window.speechSynthesis.speak(u);}catch(e){} }
 function speakCurrent(){ const w=queue[qi]; if(w) speak(w.en); }
 function speakExample(){ const w=queue[qi]; if(!w) return; const sentence=w.ex_en||((EXAMPLES[w.en.toLowerCase()]||[])[0]); if(sentence) speak(sentence); }
+function hlExample(sentence, en){ var esc=function(s){return String(s).replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;';});}; var out=esc(sentence); var base=(en||'').toLowerCase().split(/[ \/]/)[0].replace(/[^a-z]/g,''); if(base.length>=3){ var stem=base.length>5?base.slice(0,base.length-1):base; try{ var re=new RegExp('\\b('+stem+'[a-z]*)\\b','gi'); out=out.replace(re,'<span class="hl">$1</span>'); }catch(e){} } return out; }
 
 /* 効果音（Web Audio・歓声/笛/得点/ミス） */
 let actx=null;
@@ -483,7 +485,7 @@ function showCard(){ const w=queue[qi]; flipped=false;
   const pos=(w.pos||posOf(w.ja)); const pb=document.getElementById('posBadge'); pb.textContent=pos; pb.style.display='inline-block';
   document.getElementById('backMeaning').textContent=w.ja;
   const ex=(w.ex_en?[w.ex_en,w.ex_ja]:EXAMPLES[w.en.toLowerCase()]); const eb=document.getElementById('exampleBox');
-  if(ex){ eb.style.display='block'; eb.innerHTML=`<div class="en"></div><div class="ja"></div><button class="speak ghost sm pron" onclick="event.stopPropagation(); speakExample()">🔊 例文を読む</button>`; eb.querySelector('.en').textContent=ex[0]; eb.querySelector('.ja').textContent=ex[1]; }
+  if(ex){ eb.style.display='block'; eb.innerHTML=`<div class="en"></div><div class="ja"></div><button class="speak ghost sm pron" onclick="event.stopPropagation(); speakExample()">🔊 例文を読む</button>`; eb.querySelector('.en').innerHTML=hlExample(ex[0],w.en); eb.querySelector('.ja').textContent=ex[1]; }
   else { eb.style.display='none'; eb.innerHTML=''; }
   const rel=relOf(w.ja); const rb=document.getElementById('relatedBox'); rb.innerHTML='';
   const addRel=(label,arr)=>{ arr.forEach(x=>{ const c=document.createElement('span'); c.className='rel-chip'; c.innerHTML=`<span class="k">${label}</span>${x}`; c.onclick=(e)=>{ e.stopPropagation(); speak(x); }; rb.appendChild(c); }); };
@@ -492,7 +494,7 @@ function showCard(){ const w=queue[qi]; flipped=false;
   else { document.getElementById('frontWord').className='word ja'; document.getElementById('frontWord').textContent=promptJa(w.ja); document.getElementById('frontHint').textContent='英語は？'; document.getElementById('speakFront').style.display='none'; document.getElementById('spdRow').style.display='none'; document.getElementById('backMeaning').textContent=w.en+' ／ '+w.ja; }
   updateHud(); if(settings.auto&&settings.dir==='en2ja') speak(w.en);
 }
-function flip(){ if(flipped) return; flipped=true; AC(); document.getElementById('card').classList.add('flipped'); document.getElementById('flipBtn').style.display='none'; document.getElementById('answerBtns').classList.remove('hidden'); document.querySelector('#card .back-scroll').scrollTop=0; if(settings.auto&&settings.dir==='ja2en') speak(queue[qi].en); }
+function flip(){ if(flipped) return; flipped=true; AC(); document.getElementById('card').classList.add('flipped'); document.getElementById('flipBtn').style.display='none'; document.getElementById('answerBtns').classList.remove('hidden'); document.querySelector('#card .back-scroll').scrollTop=0; let w=queue[qi]; if(settings.auto&&settings.dir==='ja2en') speak(w.en); if(settings.autoEx&&w&&w.ex_en){ let d=(settings.auto?1300:250); setTimeout(function(){ if(queue[qi]===w&&flipped&&document.getElementById('study').classList.contains('active')) speak(w.ex_en); }, d); } }
 function requeue(w,gap,maxT){ const c=retryMap[w.no]||0; if(c>=maxT) return; retryMap[w.no]=c+1; const pos=Math.min(queue.length,qi+gap); queue.splice(pos,0,w); }
 function flashRally(){ const el=document.getElementById('rally'); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
 function spikeBall(){ const s=document.createElement('div'); s.className='spike'; s.textContent='🏐'; document.body.appendChild(s); setTimeout(()=>{ if(s.parentNode) s.parentNode.removeChild(s); },680); }
@@ -564,7 +566,7 @@ function renderRanks(){ document.getElementById('recStreak').textContent=game.st
 
 /* 設定 */
 function fillVoices(){ const sel=document.getElementById('selVoice'); if(!sel) return; const vs=allVoices().filter(v=>v.lang&&v.lang.toLowerCase().slice(0,2)==='en'); sel.innerHTML='<option value="">おまかせ（自動で高品質）</option>'; vs.forEach(v=>{ const o=document.createElement('option'); o.value=v.name; const tag=/(siri|enhanced|premium|neural)/i.test(v.name)?' ⭐':''; o.textContent=`${v.name} (${v.lang})${tag}`; if(v.name===settings.voice)o.selected=true; sel.appendChild(o); }); document.getElementById('voiceSub').textContent=vs.length?`${vs.length}種類の英語音声が使えます`:'端末の英語音声を読込中…'; }
-function renderSettings(){ document.querySelectorAll('#segTheme button').forEach(b=>b.classList.toggle('on',b.dataset.v===settings.theme)); document.querySelectorAll('#segAccent button').forEach(b=>b.classList.toggle('on',b.dataset.v===settings.accent)); document.querySelectorAll('#segDir button').forEach(b=>b.classList.toggle('on',b.dataset.v===settings.dir)); document.querySelectorAll('#segPitch button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.v)===parseFloat(settings.pitch))); document.getElementById('rateRange').value=settings.rate; document.getElementById('rateLbl').textContent=settings.rate<=0.7?'ゆっくり':settings.rate>=1.05?'はやめ':'標準'; document.getElementById('selSize').value=String(settings.size); document.getElementById('swAuto').classList.toggle('on',!!settings.auto); document.getElementById('swSound').classList.toggle('on',!!settings.sound); document.getElementById('verLabel').textContent='バージョン '+APP_VERSION+'。'; fillVoices(); }
+function renderSettings(){ document.querySelectorAll('#segTheme button').forEach(b=>b.classList.toggle('on',b.dataset.v===settings.theme)); document.querySelectorAll('#segAccent button').forEach(b=>b.classList.toggle('on',b.dataset.v===settings.accent)); document.querySelectorAll('#segDir button').forEach(b=>b.classList.toggle('on',b.dataset.v===settings.dir)); document.querySelectorAll('#segPitch button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.v)===parseFloat(settings.pitch))); document.getElementById('rateRange').value=settings.rate; document.getElementById('rateLbl').textContent=settings.rate<=0.7?'ゆっくり':settings.rate>=1.05?'はやめ':'標準'; document.getElementById('selSize').value=String(settings.size); document.getElementById('swAuto').classList.toggle('on',!!settings.auto); document.getElementById('swAutoEx').classList.toggle('on',!!settings.autoEx); document.getElementById('swSound').classList.toggle('on',!!settings.sound); document.getElementById('verLabel').textContent='バージョン '+APP_VERSION+'。'; fillVoices(); }
 function setTheme(v){ settings.theme=v; saveSet(); applyTheme(); renderSettings(); }
 function applyTheme(){ document.documentElement.setAttribute('data-theme',settings.theme||'volley'); const tc={volley:'#ff6a1a',dark:'#19202f',light:'#ffffff',auto:'#19202f'}[settings.theme]||'#ff6a1a'; const m=document.querySelector('meta[name=theme-color]'); if(m)m.setAttribute('content',tc); }
 function setAccent(v){ settings.accent=v; saveSet(); renderSettings(); speak('English'); }
@@ -574,6 +576,7 @@ function setVoice(v){ settings.voice=v; saveSet(); speak('Hi, I am your English 
 function setDir(v){ settings.dir=v; saveSet(); renderSettings(); }
 function setSize(v){ settings.size=parseInt(v); saveSet(); }
 function toggleAuto(){ settings.auto=!settings.auto; saveSet(); renderSettings(); }
+function toggleAutoEx(){ settings.autoEx=!settings.autoEx; saveSet(); renderSettings(); }
 function toggleSound(){ settings.sound=!settings.sound; saveSet(); renderSettings(); if(settings.sound){ AC(); sfxPoint(); } }
 function resetAll(){ if(confirm('学習記録・苦手・ランク・連続記録をすべて消します。よろしいですか？')){ prog={}; game={points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0}; saveProg(); saveGame(); renderHome(); alert('リセットしました'); go('home'); } }
 
