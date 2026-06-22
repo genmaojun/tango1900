@@ -13,14 +13,17 @@
 <title>WORDCRAFT 元の英単語1900</title>
 <style>
   @font-face{font-family:'PixelMC';src:url('pixel.ttf') format('truetype');font-display:swap;}
+  @font-face{font-family:'JpDot';src:url('jp.ttf') format('truetype');font-display:swap;}
   :root, html[data-theme="volley"]{--bg:#0d0f15;--card:#171b24;--card2:#1f2532;--text:#f3f5fa;--muted:#9aa3b8;--primary:#ff6a1a;--primary-d:#e85d12;--accent:#ff8a3d;--line:#2a3142;--green:#2fd07a;--green-bg:#13301f;--amber:#ffc23d;--amber-bg:#33290f;--red:#ff5b4d;--red-bg:#34201d;--gold:#ffb02e;--shadow:0 10px 30px rgba(0,0,0,.5);}
   html[data-theme="dark"]{--bg:#0e1320;--card:#19202f;--card2:#212a3c;--text:#e9ecf5;--muted:#98a2ba;--primary:#5aa0ff;--primary-d:#4a8ff0;--accent:#7c83ff;--line:#2b3450;--green:#34d27b;--green-bg:#16321f;--amber:#ffce4d;--amber-bg:#2f2a14;--red:#ff6b5e;--red-bg:#39201d;--gold:#ffd24d;--shadow:0 10px 30px rgba(0,0,0,.45);}
   html[data-theme="light"], html[data-theme="auto"]{--bg:#eef1f8;--card:#ffffff;--card2:#f4f6fb;--text:#1f2430;--muted:#7a8194;--primary:#ea5a17;--primary-d:#cf4d10;--accent:#1f6feb;--line:#e4e7f0;--green:#16a34a;--green-bg:#e9f7ee;--amber:#e6a700;--amber-bg:#fdf4dd;--red:#e1463b;--red-bg:#fdeceb;--gold:#f4b400;--shadow:0 10px 30px rgba(40,50,90,.12);}
   @media (prefers-color-scheme: dark){html[data-theme="auto"]{--bg:#0e1320;--card:#19202f;--card2:#212a3c;--text:#e9ecf5;--muted:#98a2ba;--primary:#5aa0ff;--primary-d:#4a8ff0;--accent:#7c83ff;--line:#2b3450;--green:#34d27b;--green-bg:#16321f;--amber:#ffce4d;--amber-bg:#2f2a14;--red:#ff6b5e;--red-bg:#39201d;--gold:#ffd24d;--shadow:0 10px 30px rgba(0,0,0,.45);}}
-  html[data-theme="minecraft"]{--bg:#48321e;--card:#6b4a2e;--card2:#7d5a38;--text:#f7f3e9;--muted:#d8c9ad;--primary:#5d9c3c;--primary-d:#4a7d30;--accent:#7fc04a;--line:#2e2012;--green:#5d9c3c;--green-bg:#2d3d1f;--amber:#e0a93c;--amber-bg:#3d3018;--red:#c0392b;--red-bg:#3a201d;--gold:#f0c419;--shadow:0 5px 0 rgba(0,0,0,.45);}
+  html[data-theme="minecraft"]{--bg:#3a2a1a;--card:#6b4f33;--card2:#7d5d3c;--text:#f7f3e9;--muted:#d6c8ac;--primary:#6cc24a;--primary-d:#57a13a;--accent:#84d957;--line:#281b0f;--green:#6cc24a;--green-bg:#2d3d1f;--amber:#e0a93c;--amber-bg:#3d3018;--red:#c0392b;--red-bg:#3a201d;--gold:#f0c419;--shadow:0 5px 0 rgba(0,0,0,.45);}
   html[data-theme="minecraft"] .panel,html[data-theme="minecraft"] .face,html[data-theme="minecraft"] .cta,html[data-theme="minecraft"] .btn,html[data-theme="minecraft"] .tile,html[data-theme="minecraft"] .chip,html[data-theme="minecraft"] .ans,html[data-theme="minecraft"] .icon-btn,html[data-theme="minecraft"] .flipbtn,html[data-theme="minecraft"] .range-go,html[data-theme="minecraft"] .rangein,html[data-theme="minecraft"] .rankcard,html[data-theme="minecraft"] .rc-badge,html[data-theme="minecraft"] .rc-lv{border-radius:3px;}
   html[data-theme="minecraft"] .ans,html[data-theme="minecraft"] .btn,html[data-theme="minecraft"] .cta,html[data-theme="minecraft"] .flipbtn,html[data-theme="minecraft"] .range-go,html[data-theme="minecraft"] .mic-btn{box-shadow:0 4px 0 rgba(0,0,0,.4);border:2px solid rgba(0,0,0,.22);}
-  html[data-theme="minecraft"] body{background-image:linear-gradient(rgba(0,0,0,.10) 2px,transparent 2px),linear-gradient(90deg,rgba(0,0,0,.10) 2px,transparent 2px);background-size:34px 34px;}
+  html[data-theme="minecraft"] body{font-family:'PixelMC','JpDot',-apple-system,"Hiragino Sans",sans-serif;background-image:linear-gradient(rgba(0,0,0,.10) 2px,transparent 2px),linear-gradient(90deg,rgba(0,0,0,.10) 2px,transparent 2px);background-size:34px 34px;}
+  html[data-theme="minecraft"] .meaning,html[data-theme="minecraft"] .example .ja,html[data-theme="minecraft"] .coach-tx p,html[data-theme="minecraft"] .note,html[data-theme="minecraft"] .tipcard p,html[data-theme="minecraft"] .sec-name,html[data-theme="minecraft"] .weak-ja{font-family:'JpDot',-apple-system,"Hiragino Sans",sans-serif;}
+  html[data-theme="minecraft"] button,html[data-theme="minecraft"] input,html[data-theme="minecraft"] select,html[data-theme="minecraft"] .lbl,html[data-theme="minecraft"] .lbl small,html[data-theme="minecraft"] .cta .t b,html[data-theme="minecraft"] .cta .t small,html[data-theme="minecraft"] h2.sect,html[data-theme="minecraft"] .tile b,html[data-theme="minecraft"] .ans{font-family:'PixelMC','JpDot',-apple-system,"Hiragino Sans",sans-serif;}
   html[data-theme="minecraft"] .word,html[data-theme="minecraft"] .mic-word{letter-spacing:.5px;}
   .mc-logo-main{font-family:'PixelMC',monospace;font-size:18px;letter-spacing:1px;color:#c8c8c8;text-shadow:0 2px #707070,0 3px #4a4a4a,2px 3px #2a2a2a;display:inline-block;line-height:1.6;}
   .mc-logo small{font-family:-apple-system,"Hiragino Sans",sans-serif;letter-spacing:0;font-weight:600;}
@@ -103,7 +106,7 @@
   .rank-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);} .rank-row:last-child{border-bottom:none;} .rank-row.cur{background:var(--amber-bg);}
   .rank-ic{font-size:20px;width:26px;text-align:center;} .rank-nm{font-weight:700;font-size:14px;} .rank-pt{font-size:11px;color:var(--muted);} .rank-now{margin-left:auto;font-size:11px;font-weight:800;color:var(--primary);}
   .set-row{display:flex;align-items:center;gap:12px;padding:13px 4px;border-bottom:1px solid var(--line);} .set-row:last-child{border-bottom:none;} .set-row .lbl{flex:1;} .set-row .lbl small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
-  .seg{display:flex;background:var(--card2);border-radius:12px;padding:3px;gap:3px;flex-wrap:wrap;} .seg button{border:none;background:transparent;color:var(--muted);font-weight:700;font-size:13px;padding:8px 10px;border-radius:9px;} .seg button.on{background:var(--primary);color:#fff;}
+  .seg{display:flex;background:var(--card2);border-radius:12px;padding:3px;gap:3px;flex-wrap:wrap;} .seg button{border:none;background:transparent;color:var(--muted);font-weight:700;font-size:12px;padding:7px 9px;border-radius:9px;} .seg button.on{background:var(--primary);color:#fff;}
   select.sel{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:9px 10px;font-size:13px;font-weight:600;max-width:170px;}
   .switch{width:52px;height:30px;border-radius:999px;background:var(--line);position:relative;transition:.2s;} .switch.on{background:var(--green);} .switch i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;} .switch.on i{left:25px;}
   .empty{text-align:center;color:var(--muted);padding:36px 10px;} .empty .em{font-size:38px;}
@@ -294,7 +297,7 @@
   <section id="settings" class="screen">
     <header><button class="icon-btn" onclick="go('home')">‹</button><div class="brand" style="font-size:16px;">設定</div></header>
     <div class="panel pad">
-      <div class="set-row"><div class="lbl">背景テーマ<small>⛏️マイクラ / マイクラ / ダーク 他</small></div><div class="seg" id="segTheme"><button data-v="minecraft" onclick="setTheme('minecraft')">⛏️マイクラ</button><button data-v="volley" onclick="setTheme('volley')">マイクラ</button><button data-v="dark" onclick="setTheme('dark')">ダーク</button><button data-v="light" onclick="setTheme('light')">ライト</button><button data-v="auto" onclick="setTheme('auto')">自動</button></div></div>
+      <div class="set-row"><div class="lbl">背景テーマ<small>⛏️マイクラ / 🔥マグマ / ダーク</small></div><div class="seg" id="segTheme"><button data-v="minecraft" onclick="setTheme('minecraft')">⛏️マイクラ</button><button data-v="volley" onclick="setTheme('volley')">🔥マグマ</button><button data-v="dark" onclick="setTheme('dark')">ダーク</button><button data-v="light" onclick="setTheme('light')">ライト</button><button data-v="auto" onclick="setTheme('auto')">自動</button></div></div>
       <div class="set-row"><div class="lbl">効果音<small>正解で採掘音・レベルアップ音</small></div><div class="switch" id="swSound" onclick="toggleSound()"><i></i></div></div>
       <div class="set-row"><div class="lbl">発音の声<small id="voiceSub">ネイティブ品質の声を選べます</small></div><select class="sel" id="selVoice" onchange="setVoice(this.value)"></select></div>
       <div class="set-row"><div class="lbl">なまり<small>米 / 英</small></div><div class="seg" id="segAccent"><button data-v="en-US" onclick="setAccent('en-US')">米</button><button data-v="en-GB" onclick="setAccent('en-GB')">英</button></div></div>
@@ -315,7 +318,7 @@
 
 <script>
 const WORDS = __WORDS_JSON__;
-const APP_VERSION = "4.7";
+const APP_VERSION = "4.8";
 const TOTAL = WORDS.length;
 const byNo={}; WORDS.forEach(w=>byNo[w.no]=w);
 const byEn={}; WORDS.forEach(w=>{ byEn[w.en.toLowerCase()]=w; });
