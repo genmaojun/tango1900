@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="WORDCRAFT">
-<meta name="theme-color" content="#ff6a1a">
+<meta name="theme-color" content="#5fae3a">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
 <title>WORDCRAFT 元の英単語1900</title>
@@ -107,7 +107,7 @@
   .method{padding:14px;border-top:1px solid var(--line);display:none;} .method h4{margin:10px 0 3px;font-size:13px;} .method p{margin:0;font-size:12px;color:var(--muted);line-height:1.6;}
   .rank-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);} .rank-row:last-child{border-bottom:none;} .rank-row.cur{background:var(--amber-bg);}
   .rank-ic{font-size:20px;width:26px;text-align:center;} .rank-nm{font-weight:700;font-size:14px;} .rank-pt{font-size:11px;color:var(--muted);} .rank-now{margin-left:auto;font-size:11px;font-weight:800;color:var(--primary);}
-  .set-row{display:flex;align-items:center;gap:12px;padding:13px 4px;border-bottom:1px solid var(--line);} .set-row:last-child{border-bottom:none;} .set-row .lbl{flex:1;} .set-row .lbl small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
+  .set-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:13px 4px;border-bottom:1px solid var(--line);} .set-row:last-child{border-bottom:none;} .set-row .lbl{flex:1 1 88px;min-width:88px;} .set-row .lbl small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
   .seg{display:flex;background:var(--card2);border-radius:12px;padding:3px;gap:3px;flex-wrap:wrap;} .seg button{border:none;background:transparent;color:var(--muted);font-weight:700;font-size:12px;padding:7px 9px;border-radius:9px;} .seg button.on{background:var(--primary);color:#fff;}
   select.sel{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:9px 10px;font-size:13px;font-weight:600;max-width:170px;}
   .switch{width:52px;height:30px;border-radius:999px;background:var(--line);position:relative;transition:.2s;} .switch.on{background:var(--green);} .switch i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;} .switch.on i{left:25px;}
@@ -320,7 +320,7 @@
 
 <script>
 const WORDS = __WORDS_JSON__;
-const APP_VERSION = "4.9";
+const APP_VERSION = "5.0";
 const TOTAL = WORDS.length;
 const byNo={}; WORDS.forEach(w=>byNo[w.no]=w);
 const byEn={}; WORDS.forEach(w=>{ byEn[w.en.toLowerCase()]=w; });

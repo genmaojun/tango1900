@@ -1,12 +1,12 @@
 {
-  "name": "元の英単語帳 ターゲット1900",
-  "short_name": "ターゲット1900",
+  "name": "WORDCRAFT 元の英単語1900",
+  "short_name": "WORDCRAFT",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0f1320",
-  "theme_color": "#4f46e5",
+  "background_color": "#1c2e16",
+  "theme_color": "#5fae3a",
   "lang": "ja",
   "icons": [
     {
