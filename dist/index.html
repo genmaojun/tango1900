@@ -29,6 +29,8 @@
   /* ★学習で実際に読み込む本文（英単語・例文・日本語訳）だけ可読性優先のシステムフォント。GUIの見出し・ボタン・数字・ロゴは上のままピクセル/ドットでマイクラ感を維持（井上指示2026-06-23） */
   html[data-theme^="minecraft"] .word,html[data-theme^="minecraft"] .word.ja,html[data-theme^="minecraft"] .word-sm,html[data-theme^="minecraft"] .mic-word,html[data-theme^="minecraft"] .meaning,html[data-theme^="minecraft"] .example .en,html[data-theme^="minecraft"] .example .ja,html[data-theme^="minecraft"] .mic-ja{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;letter-spacing:0;}
   html[data-theme^="minecraft"] .word,html[data-theme^="minecraft"] .mic-word{letter-spacing:.3px;}
+  /* マイクラ系は暗い赤(--red)が茶/緑カードに埋もれるため、例文ハイライト語を高コントラストの金色に */
+  html[data-theme^="minecraft"] .example .en .hl{color:#ffd24d;}
   .mc-logo-main{font-family:'PixelMC',monospace;font-size:18px;letter-spacing:1px;color:#c8c8c8;text-shadow:0 2px #707070,0 3px #4a4a4a,2px 3px #2a2a2a;display:inline-block;line-height:1.6;}
   .mc-logo small{font-family:-apple-system,"Hiragino Sans",sans-serif;letter-spacing:0;font-weight:600;}
   html[data-theme^="minecraft"] .chip b,html[data-theme^="minecraft"] .rc-rank,html[data-theme^="minecraft"] .rc-lv,html[data-theme^="minecraft"] .rc-xp,html[data-theme^="minecraft"] .rally,html[data-theme^="minecraft"] .score,html[data-theme^="minecraft"] .pcount,html[data-theme^="minecraft"] .ring-label,html[data-theme^="minecraft"] .stat b,html[data-theme^="minecraft"] .result-big{font-family:'PixelMC',-apple-system,sans-serif;}
