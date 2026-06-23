@@ -24,9 +24,11 @@
   html[data-theme^="minecraft"] .panel,html[data-theme^="minecraft"] .face,html[data-theme^="minecraft"] .cta,html[data-theme^="minecraft"] .btn,html[data-theme^="minecraft"] .tile,html[data-theme^="minecraft"] .chip,html[data-theme^="minecraft"] .ans,html[data-theme^="minecraft"] .icon-btn,html[data-theme^="minecraft"] .flipbtn,html[data-theme^="minecraft"] .range-go,html[data-theme^="minecraft"] .rangein,html[data-theme^="minecraft"] .rankcard,html[data-theme^="minecraft"] .rc-badge,html[data-theme^="minecraft"] .rc-lv{border-radius:3px;}
   html[data-theme^="minecraft"] .ans,html[data-theme^="minecraft"] .btn,html[data-theme^="minecraft"] .cta,html[data-theme^="minecraft"] .flipbtn,html[data-theme^="minecraft"] .range-go,html[data-theme^="minecraft"] .mic-btn{box-shadow:0 4px 0 rgba(0,0,0,.4);border:2px solid rgba(0,0,0,.22);}
   html[data-theme^="minecraft"] body{font-family:'PixelMC','JpDot',-apple-system,"Hiragino Sans",sans-serif;background-image:linear-gradient(rgba(0,0,0,.10) 2px,transparent 2px),linear-gradient(90deg,rgba(0,0,0,.10) 2px,transparent 2px);background-size:34px 34px;}
-  html[data-theme^="minecraft"] .meaning,html[data-theme^="minecraft"] .example .ja,html[data-theme^="minecraft"] .coach-tx p,html[data-theme^="minecraft"] .note,html[data-theme^="minecraft"] .tipcard p,html[data-theme^="minecraft"] .sec-name,html[data-theme^="minecraft"] .weak-ja{font-family:'JpDot',-apple-system,"Hiragino Sans",sans-serif;}
+  html[data-theme^="minecraft"] .coach-tx p,html[data-theme^="minecraft"] .note,html[data-theme^="minecraft"] .tipcard p,html[data-theme^="minecraft"] .sec-name,html[data-theme^="minecraft"] .weak-ja{font-family:'JpDot',-apple-system,"Hiragino Sans",sans-serif;}
   html[data-theme^="minecraft"] button,html[data-theme^="minecraft"] input,html[data-theme^="minecraft"] select,html[data-theme^="minecraft"] .lbl,html[data-theme^="minecraft"] .lbl small,html[data-theme^="minecraft"] .cta .t b,html[data-theme^="minecraft"] .cta .t small,html[data-theme^="minecraft"] h2.sect,html[data-theme^="minecraft"] .tile b,html[data-theme^="minecraft"] .ans{font-family:'PixelMC','JpDot',-apple-system,"Hiragino Sans",sans-serif;}
-  html[data-theme^="minecraft"] .word,html[data-theme^="minecraft"] .mic-word{letter-spacing:.5px;}
+  /* ★学習で実際に読み込む本文（英単語・例文・日本語訳）だけ可読性優先のシステムフォント。GUIの見出し・ボタン・数字・ロゴは上のままピクセル/ドットでマイクラ感を維持（井上指示2026-06-23） */
+  html[data-theme^="minecraft"] .word,html[data-theme^="minecraft"] .word.ja,html[data-theme^="minecraft"] .word-sm,html[data-theme^="minecraft"] .mic-word,html[data-theme^="minecraft"] .meaning,html[data-theme^="minecraft"] .example .en,html[data-theme^="minecraft"] .example .ja,html[data-theme^="minecraft"] .mic-ja{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;letter-spacing:0;}
+  html[data-theme^="minecraft"] .word,html[data-theme^="minecraft"] .mic-word{letter-spacing:.3px;}
   .mc-logo-main{font-family:'PixelMC',monospace;font-size:18px;letter-spacing:1px;color:#c8c8c8;text-shadow:0 2px #707070,0 3px #4a4a4a,2px 3px #2a2a2a;display:inline-block;line-height:1.6;}
   .mc-logo small{font-family:-apple-system,"Hiragino Sans",sans-serif;letter-spacing:0;font-weight:600;}
   html[data-theme^="minecraft"] .chip b,html[data-theme^="minecraft"] .rc-rank,html[data-theme^="minecraft"] .rc-lv,html[data-theme^="minecraft"] .rc-xp,html[data-theme^="minecraft"] .rally,html[data-theme^="minecraft"] .score,html[data-theme^="minecraft"] .pcount,html[data-theme^="minecraft"] .ring-label,html[data-theme^="minecraft"] .stat b,html[data-theme^="minecraft"] .result-big{font-family:'PixelMC',-apple-system,sans-serif;}
@@ -42,8 +44,13 @@
   .panel{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);} .pad{padding:16px;}
   @keyframes bounceBall{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-9px) rotate(8deg)}}
   .vball{display:inline-block;animation:bounceBall 1.7s ease-in-out infinite;}
-  @keyframes spikePop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-25deg);opacity:0}40%{transform:translate(-50%,-60%) scale(1.5) rotate(12deg);opacity:1}100%{transform:translate(-50%,-75%) scale(1) rotate(0);opacity:0}}
-  .spike{position:fixed;left:50%;top:42%;font-size:96px;pointer-events:none;z-index:60;animation:spikePop .65s ease-out forwards;}
+  @keyframes spikePop{0%{transform:translate(-50%,-50%) scale(.2) rotate(-25deg);opacity:0}22%{transform:translate(-50%,-62%) scale(1.5) rotate(10deg);opacity:1}68%{transform:translate(-50%,-66%) scale(1.12) rotate(0);opacity:1}100%{transform:translate(-50%,-84%) scale(1) rotate(0);opacity:0}}
+  .spike{position:fixed;left:50%;top:42%;text-align:center;pointer-events:none;z-index:60;animation:spikePop 1.5s ease-out forwards;}
+  .spike-ic{font-size:88px;line-height:1;filter:drop-shadow(0 4px 5px rgba(0,0,0,.4));}
+  .spike-get{font-family:'PixelMC',monospace;font-size:26px;font-weight:800;color:#ffe34d;text-shadow:0 2px #8a6d00,0 3px #4a3a00;margin-top:2px;letter-spacing:1px;}
+  .build-card{margin-top:12px;cursor:pointer;} .build-top{display:flex;align-items:center;gap:12px;} .build-ic{font-size:40px;line-height:1;flex:none;} .build-info{flex:1;min-width:0;} .build-nm{font-weight:800;font-size:15px;} .build-sub{font-size:11px;color:var(--muted);margin-top:2px;} .build-cnt{font-size:15px;font-weight:800;color:var(--gold);flex:none;}
+  .build-row{display:flex;gap:3px;margin-top:10px;} .blk{flex:1;height:14px;border-radius:2px;background:var(--card2);border:1px solid var(--line);} .blk.on{background:var(--green);border-color:var(--green);box-shadow:inset 0 -3px 0 rgba(0,0,0,.25);}
+  .build-next{font-size:11px;color:var(--muted);margin-top:6px;text-align:center;font-weight:700;}
   .status-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;}
   .chip{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:9px 6px;text-align:center;box-shadow:var(--shadow);} .chip b{display:block;font-size:19px;line-height:1.1;} .chip span{font-size:11px;color:var(--muted);}
   .ring-wrap{display:flex;align-items:center;gap:14px;} .ring{width:84px;height:84px;flex:none;}
@@ -91,7 +98,7 @@
   .rel-chip{display:inline-flex;align-items:center;gap:4px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;} .rel-chip .k{color:var(--muted);font-size:10px;}
   #answerArea{margin-bottom:18px;}
   .answer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;} .answer.hidden{visibility:hidden;}
-  .ans{border:none;border-radius:16px;padding:18px 4px;font-size:19px;font-weight:800;color:#fff;line-height:1.12;} .ans:active{transform:translateY(1px) scale(.98);} .ans small{display:block;font-weight:600;font-size:11px;opacity:.92;margin-top:4px;}
+  .ans{border:none;border-radius:16px;padding:16px 3px;font-size:17px;font-weight:800;color:#fff;line-height:1.12;white-space:nowrap;overflow:hidden;} .ans:active{transform:translateY(1px) scale(.98);} .ans small{display:block;font-weight:600;font-size:10px;opacity:.92;margin-top:4px;white-space:nowrap;}
   .ans.x{background:var(--red);} .ans.d{background:var(--amber);} .ans.o{background:var(--green);}
   .reveal-hint{text-align:center;color:var(--muted);font-size:14px;padding:8px 0;}
   .flipbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;border-radius:18px;padding:18px;font-size:19px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--primary));box-shadow:var(--shadow);} .flipbtn:active{transform:translateY(1px) scale(.99);} .flipbtn .ic{font-size:22px;}
@@ -161,6 +168,16 @@
         <div style="flex:1"><div style="font-weight:800;font-size:14px;" id="rankLine">次のランクまで</div><div class="rankbar"><i id="rankFill" style="width:0%"></i></div><div style="color:var(--muted);font-size:12px;margin-top:8px;" id="overallSub">全1900語</div></div>
       </div>
     </div>
+    <div class="panel pad build-card" onclick="go('ranks')">
+      <div class="build-top">
+        <div class="build-ic" id="buildIc">🏕️</div>
+        <div class="build-info"><div class="build-nm" id="buildNm">はじまりのテント</div><div class="build-sub" id="buildSub">これまで 0 ブロック採掘</div></div>
+        <div class="build-cnt" id="buildCnt">⬛0</div>
+      </div>
+      <div class="build-row" id="buildRow"></div>
+      <div class="rankbar" style="margin-top:8px"><i id="buildFill" style="width:0%"></i></div>
+      <div class="build-next" id="buildNext">次は「土の小屋」まで あと30ブロック</div>
+    </div>
     <button class="cta" onclick="startToday()"><div class="big vball">⛏️</div><div class="t"><b>今日の採掘スタート</b><small id="todayLabel">復習＋新規でレベルUP</small></div><div class="go">▶</div></button>
     <button class="cta speak2" onclick="startSpeak()"><div class="big">🎤</div><div class="t"><b>発音チャレンジ</b><small>声に出して特訓（マイク判定）</small></div><div class="go">▶</div></button>
     <div class="tipcard" id="brainTip"><div class="ti">🧠</div><div><b>今日の脳科学</b><p id="brainTipText">—</p></div></div>
@@ -172,7 +189,7 @@
       <button class="tile" onclick="go('ranks')"><div class="ic">🏅</div><b>ランク・記録</b><span id="recLabel">最高コンボ 0</span></button>
       <button class="tile" onclick="startMarch()"><div class="ic">🔥</div><b>MARCH難単語</b><span>Part3</span></button>
     </div>
-    <div class="note">⛏️ <b>遊び方</b>：単語→意味を思い出す→<span class="kbd">🔊</span>発音→タップで答え→<span class="kbd">〇</span>決めた／<span class="kbd">△</span>あいまい／<span class="kbd">✕</span>ミス。連続正解で<b>コンボ</b>が伸び<b>経験値オーブ</b>が湧く！裏に<b>例文・品詞・関連語</b>も表示。脳科学AIが最適な間隔で反復します。</div>
+    <div class="note">⛏️ <b>遊び方</b>：単語→意味を思い出す→<span class="kbd">🔊</span>発音→タップで答え→<span class="kbd">〇</span>ゲット／<span class="kbd">△</span>あいまい／<span class="kbd">✕</span>ミス。連続正解で<b>コンボ</b>が伸び<b>経験値オーブ</b>が湧く！裏に<b>例文・品詞・関連語</b>も表示。脳科学AIが最適な間隔で反復します。</div>
   </section>
 
   <!-- 範囲 -->
@@ -227,7 +244,7 @@
       <div class="answer hidden" id="answerBtns">
         <button class="ans x" onclick="answer('x')">✕ ミス<small>わからない</small></button>
         <button class="ans d" onclick="answer('d')">△ あいまい<small>もう一度</small></button>
-        <button class="ans o" onclick="answer('o')">〇 決めた<small>採掘！</small></button>
+        <button class="ans o" onclick="answer('o')">〇 ゲット<small>覚えた！</small></button>
       </div>
     </div>
   </section>
@@ -252,7 +269,7 @@
     <header><div class="brand" style="font-size:16px;">セット終了！</div></header>
     <div class="panel pad" style="margin-top:8px;">
       <div class="result-big" id="resEmoji">⛏️</div><div class="result-msg" id="resMsg"></div>
-      <div class="stat-grid"><div class="stat o"><b id="resO">0</b><span>〇 決めた</span></div><div class="stat d"><b id="resD">0</b><span>△ あいまい</span></div><div class="stat x"><b id="resX">0</b><span>✕ ミス</span></div></div>
+      <div class="stat-grid"><div class="stat o"><b id="resO">0</b><span>〇 ゲット</span></div><div class="stat d"><b id="resD">0</b><span>△ あいまい</span></div><div class="stat x"><b id="resX">0</b><span>✕ ミス</span></div></div>
       <div class="stat-grid" style="margin-top:8px;"><div class="stat"><b id="resRally">0</b><span>最高コンボ</span></div><div class="stat"><b id="resGain" style="color:var(--gold)">+0</b><span>獲得pt</span></div><div class="stat"><b id="resAcc">0%</b><span>正答率</span></div></div>
       <div class="levelup" id="levelup"></div>
       <div class="breakcard" id="breakCard"><div class="ti">🛑</div><div><b id="breakTitle">ナイスセット！少し休憩</b><p id="breakText"></p></div></div>
@@ -298,6 +315,7 @@
   <!-- 設定 -->
   <section id="settings" class="screen">
     <header><button class="icon-btn" onclick="go('home')">‹</button><div class="brand" style="font-size:16px;">設定</div></header>
+    <button class="btn green" style="margin-top:8px;" onclick="forceUpdate()">⬇️ 最新版に更新（記録はそのまま）</button>
     <div class="panel pad">
       <div class="set-row"><div class="lbl">背景テーマ<small>⛏️土 / 🟩緑 のマイクラ他</small></div><div class="seg" id="segTheme"><button data-v="minecraft" onclick="setTheme('minecraft')">⛏️土</button><button data-v="minecraft2" onclick="setTheme('minecraft2')">🟩緑</button><button data-v="dark" onclick="setTheme('dark')">ダーク</button><button data-v="light" onclick="setTheme('light')">ライト</button><button data-v="auto" onclick="setTheme('auto')">自動</button></div></div>
       <div class="set-row"><div class="lbl">効果音<small>正解で採掘音・レベルアップ音</small></div><div class="switch" id="swSound" onclick="toggleSound()"><i></i></div></div>
@@ -311,8 +329,7 @@
       <div class="set-row"><div class="lbl">めくったら例文も読む<small>リスニング強化・耳から定着</small></div><div class="switch" id="swAutoEx" onclick="toggleAutoEx()"><i></i></div></div>
       <div class="set-row"><div class="lbl">1回の語数<small>電車のひと区間ぶん</small></div><select class="sel" id="selSize" onchange="setSize(this.value)"><option value="10">10語</option><option value="15">15語</option><option value="20">20語</option><option value="30">30語</option><option value="50">50語</option></select></div>
     </div>
-    <button class="btn green" style="margin-top:16px;" onclick="forceUpdate()">⬇️ 最新版に更新（記録はそのまま）</button>
-    <button class="btn sec" style="margin-top:10px;" onclick="resetAll()">🗑 学習記録・ランクをリセット</button>
+    <button class="btn sec" style="margin-top:16px;" onclick="resetAll()">🗑 学習記録・ランクをリセット</button>
     <div class="note" id="voiceHelp">📣 <b>ネイティブ級の発音</b>（iPhone）：設定→アクセシビリティ→読み上げコンテンツ→声→英語→「Siri」や「高品質」をDL→ここで選択。<br><span id="verLabel"></span> 記録はこのiPhone内のみ（オフライン）。</div>
   </section>
 
@@ -384,7 +401,7 @@ function readJSON(k,d){ try{ return JSON.parse(localStorage.getItem(k))||d; }cat
 function load(){
   prog=readJSON(SKEY+"_prog",{});
   settings=Object.assign({theme:"minecraft",sound:true,accent:"en-US",rate:0.85,pitch:1,dir:"en2ja",auto:true,order:"srs",size:20,voice:"",autoEx:true}, readJSON(SKEY+"_set",{}));
-  game=Object.assign({points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0}, readJSON(SKEY+"_game",{}));
+  game=Object.assign({points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0,built:0}, readJSON(SKEY+"_game",{}));
 }
 function saveProg(){ localStorage.setItem(SKEY+"_prog",JSON.stringify(prog)); }
 function saveSet(){ localStorage.setItem(SKEY+"_set",JSON.stringify(settings)); }
@@ -393,6 +410,8 @@ function today(){ return Math.floor((Date.now()-new Date().getTimezoneOffset()*6
 
 const RANKS=[{p:0,nm:"木の道具",ic:"🪵"},{p:120,nm:"石の道具",ic:"🪨"},{p:350,nm:"鉄の道具",ic:"⚙️"},{p:700,nm:"金の道具",ic:"🥇"},{p:1200,nm:"ダイヤの道具",ic:"💎"},{p:2000,nm:"エメラルド",ic:"💚"},{p:3200,nm:"レッドストーン",ic:"🔴"},{p:5000,nm:"ネザライト",ic:"⬛"},{p:7500,nm:"エンチャント済",ic:"✨"},{p:11000,nm:"エンダー",ic:"🟣"},{p:16000,nm:"エンダードラゴン撃破",ic:"🐉"}];
 function rankOf(pt){ let cur=RANKS[0],idx=0; for(let i=0;i<RANKS.length;i++){ if(pt>=RANKS[i].p){cur=RANKS[i];idx=i;} } return {cur,idx,next:RANKS[idx+1]||null}; }
+const BUILDS=[{b:0,ic:'🏕️',nm:'はじまりのテント'},{b:30,ic:'🛖',nm:'土の小屋'},{b:80,ic:'🏠',nm:'木の家'},{b:160,ic:'🏡',nm:'庭つきの家'},{b:280,ic:'🏘️',nm:'なかまの村'},{b:450,ic:'⛪',nm:'石の教会'},{b:650,ic:'🏰',nm:'石の城'},{b:900,ic:'🏯',nm:'天守閣'},{b:1200,ic:'🗼',nm:'鉄のタワー'},{b:1600,ic:'🌆',nm:'大都市'},{b:2100,ic:'🛸',nm:'エンドポータル'}];
+function buildOf(n){ let cur=BUILDS[0],idx=0; for(let i=0;i<BUILDS.length;i++){ if(n>=BUILDS[i].b){cur=BUILDS[i];idx=i;} } return {cur,idx,next:BUILDS[idx+1]||null}; }
 function statusOf(no){ const p=prog[no]; return p?p.s:"new"; }
 function counts(sc){ let k=0,wk=0,n=0; sc.forEach(w=>{const s=statusOf(w.no); if(s==='known')k++; else if(s==='weak'||s==='learning')wk++; else n++;}); return {k,wk,n,total:sc.length}; }
 function weakWords(){ return WORDS.filter(w=>{const s=statusOf(w.no); return s==='weak'||s==='learning';}); }
@@ -451,7 +470,7 @@ function AC(){ if(!actx){ try{ actx=new (window.AudioContext||window.webkitAudio
 function noiseSrc(dur){ const c=actx; const b=c.createBuffer(1,Math.floor(c.sampleRate*dur),c.sampleRate); const d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; const s=c.createBufferSource(); s.buffer=b; return s; }
 function sfxCheer(){ if(!settings.sound) return; const c=AC(); if(!c)return; try{ const s=noiseSrc(1.2); const f=c.createBiquadFilter(); f.type='bandpass'; f.Q.value=0.6; const g=c.createGain(); const t=c.currentTime; f.frequency.setValueAtTime(650,t); f.frequency.linearRampToValueAtTime(1300,t+0.5); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.5,t+0.25); g.gain.exponentialRampToValueAtTime(0.16,t+0.65); g.gain.exponentialRampToValueAtTime(0.0001,t+1.2); s.connect(f); f.connect(g); g.connect(c.destination); s.start(t); s.stop(t+1.2);}catch(e){} }
 function sfxWhistle(){ if(!settings.sound) return; const c=AC(); if(!c)return; try{ const o=c.createOscillator(); o.type='sine'; const g=c.createGain(); const t=c.currentTime; o.frequency.setValueAtTime(2300,t); o.frequency.linearRampToValueAtTime(2650,t+0.16); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.22,t+0.03); g.gain.exponentialRampToValueAtTime(0.0001,t+0.22); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+0.25);}catch(e){} }
-function sfxPoint(){ if(!settings.sound) return; const c=AC(); if(!c)return; try{ [0,0.11].forEach((dt,i)=>{ const o=c.createOscillator(); o.type='triangle'; const g=c.createGain(); const t=c.currentTime+dt; o.frequency.value=i?900:660; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.28,t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,t+0.16); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+0.18); });}catch(e){} }
+function sfxPoint(){ if(!settings.sound) return; const c=AC(); if(!c)return; try{ const notes=[523,659,784,1047]; notes.forEach((f,i)=>{ const o=c.createOscillator(); o.type='square'; const g=c.createGain(); const t=c.currentTime+i*0.055; o.frequency.value=f; g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.3,t+0.012); g.gain.exponentialRampToValueAtTime(0.0001,t+0.13); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+0.15); }); const o2=c.createOscillator(); o2.type='triangle'; const g2=c.createGain(); const t2=c.currentTime+0.2; o2.frequency.setValueAtTime(1568,t2); o2.frequency.linearRampToValueAtTime(2093,t2+0.18); g2.gain.setValueAtTime(0.0001,t2); g2.gain.exponentialRampToValueAtTime(0.2,t2+0.02); g2.gain.exponentialRampToValueAtTime(0.0001,t2+0.26); o2.connect(g2); g2.connect(c.destination); o2.start(t2); o2.stop(t2+0.28); }catch(e){} }
 function sfxMiss(){ if(!settings.sound) return; const c=AC(); if(!c)return; try{ const o=c.createOscillator(); o.type='sawtooth'; const g=c.createGain(); const t=c.currentTime; o.frequency.setValueAtTime(200,t); o.frequency.linearRampToValueAtTime(110,t+0.25); g.gain.setValueAtTime(0.18,t); g.gain.exponentialRampToValueAtTime(0.0001,t+0.3); o.connect(g); g.connect(c.destination); o.start(t); o.stop(t+0.3);}catch(e){} }
 function sfxLevelUp(){ sfxWhistle(); setTimeout(sfxCheer,130); }
 
@@ -472,6 +491,16 @@ function renderHome(){
   const w=weakWords().length; document.getElementById('weakLabel').textContent=w+'語'; document.getElementById('reviewTile').disabled=(w===0);
   document.getElementById('recLabel').textContent='最高コンボ '+game.maxRally;
   const tp=dayTip(); document.getElementById('brainTipText').textContent=`${tp[1]}：${tp[2]}`;
+  renderBuild();
+}
+function renderBuild(){ const n=game.built||0; const bd=buildOf(n);
+  document.getElementById('buildIc').textContent=bd.cur.ic;
+  document.getElementById('buildNm').textContent=bd.cur.nm;
+  document.getElementById('buildCnt').textContent='⬛'+n;
+  document.getElementById('buildSub').textContent='これまで '+n+' ブロック採掘';
+  const row=document.getElementById('buildRow'),fill=document.getElementById('buildFill'),next=document.getElementById('buildNext');
+  if(bd.next){ const span=bd.next.b-bd.cur.b,pr=n-bd.cur.b,ratio=Math.max(0,Math.min(1,pr/span)); fill.style.width=Math.round(ratio*100)+'%'; next.textContent=`次は「${bd.next.nm}」まで あと${bd.next.b-n}ブロック`; const filled=Math.round(ratio*10); let h=''; for(let i=0;i<10;i++){ h+='<span class="blk'+(i<filled?' on':'')+'"></span>'; } row.innerHTML=h; }
+  else { fill.style.width='100%'; next.textContent='全建築コンプリート！👑 ワールド完成！'; row.innerHTML=''; }
 }
 function renderSections(){ const host=document.getElementById('secList'); host.innerHTML=''; let cur=0,panel=null;
   for(let s=1;s<=19;s++){ const sc=WORDS.filter(w=>w.section===s); if(!sc.length) continue; const part=sc[0].part;
@@ -530,14 +559,15 @@ function showCard(){ const w=queue[qi]; flipped=false;
 function flip(){ if(flipped) return; flipped=true; AC(); document.getElementById('card').classList.add('flipped'); document.getElementById('flipBtn').style.display='none'; document.getElementById('answerBtns').classList.remove('hidden'); document.querySelector('#card .back-scroll').scrollTop=0; let w=queue[qi]; if(settings.auto&&settings.dir==='ja2en') speak(w.en); if(settings.autoEx&&w&&w.ex_en){ let d=(settings.auto?1300:250); setTimeout(function(){ if(queue[qi]===w&&flipped&&document.getElementById('study').classList.contains('active')) speak(w.ex_en); }, d); } }
 function requeue(w,gap,maxT){ const c=retryMap[w.no]||0; if(c>=maxT) return; retryMap[w.no]=c+1; const pos=Math.min(queue.length,qi+gap); queue.splice(pos,0,w); }
 function flashRally(){ const el=document.getElementById('rally'); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
-function spikeBall(){ const s=document.createElement('div'); s.className='spike'; s.textContent='⛏️'; document.body.appendChild(s); setTimeout(()=>{ if(s.parentNode) s.parentNode.removeChild(s); },680); }
+function spikeBall(){ const items=['⛏️','💎','🪨','🟩','🟫','🥇','⚙️','🍎','🌳','🔥','💚']; const ic=items[Math.floor(Math.random()*items.length)]; const s=document.createElement('div'); s.className='spike'; s.innerHTML='<div class="spike-ic">'+ic+'</div><div class="spike-get">+1 ゲット！</div>'; document.body.appendChild(s); setTimeout(()=>{ if(s.parentNode) s.parentNode.removeChild(s); },1500); }
+function buildComplete(b){ var s=document.createElement('div'); s.className='badge-pop'; s.textContent='🎉 '+b.nm+' が完成！'; document.body.appendChild(s); setTimeout(function(){ if(s.parentNode)s.parentNode.removeChild(s); },1800); sfxLevelUp(); }
 function ralleyBadge(){ var words={5:'🪨 ブロック採掘！',10:'⛏️ 鉱石発見！',15:'💎 ダイヤGET！',20:'💚 エメラルド発見！',25:'⬛ ネザライト級！',30:'🐉 エンダードラゴン撃破！'}; var t=words[rally]; if(!t) return; var s=document.createElement('div'); s.className='badge-pop'; s.textContent=t; document.body.appendChild(s); setTimeout(function(){ if(s.parentNode)s.parentNode.removeChild(s); },1000); }
 var CREEPER_SVG='<svg viewBox="0 0 8 8" width="46" height="46" class="crp-ico"><rect width="8" height="8" fill="#6cc24a"/><g fill="#15240f"><rect x="1" y="1" width="2" height="2"/><rect x="5" y="1" width="2" height="2"/><rect x="3" y="3" width="2" height="2"/><rect x="2" y="5" width="4" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/></g></svg>';
 function crossMinecraft(){ var ch=['🟩','💚','🐷','🐮','🐔','🧟','💀','🐺','🕷️','💎','⛏️','🧨','🗡️','🛡️','🏹','🐝','🦇','🐸','🍎','🌳','🔥','⚡','🟫']; var el=document.createElement('div'); el.className='mc-cross'; if(Math.random()<0.42){ el.innerHTML=CREEPER_SVG; } else { el.textContent=ch[Math.floor(Math.random()*ch.length)]; } el.style.top=(14+Math.random()*66)+'%'; var dur=3.5+Math.random()*3; el.style.animationDuration=dur+'s'; if(Math.random()<0.5) el.style.animationName='mcCrossR'; document.body.appendChild(el); setTimeout(function(){ if(el.parentNode)el.parentNode.removeChild(el); }, dur*1000+400); }
 function answer(grade){ const w=queue[qi]; const t=today(); let p=prog[w.no]||{s:'new',ease:2.5,interval:0,reps:0,c:0,w:0,v:0,lapses:0}; if(p.ease==null)p.ease=2.5; const q=grade==='o'?5:grade==='d'?3:1;
   if(q<3){ p.w++; p.lapses=(p.lapses||0)+1; p.reps=0; p.interval=0; p.due=t; p.s='weak'; rally=0; sess.x++; requeue(w,4,3); sfxMiss(); }
   else { if(grade==='o')p.c++; else p.v=(p.v||0)+1; p.ease=Math.max(1.3,p.ease+(0.1-(5-q)*(0.08+(5-q)*0.02))); if(p.reps===0)p.interval=1; else if(p.reps===1)p.interval=(q===3?2:3); else p.interval=Math.max(1,Math.round((p.interval||1)*p.ease*(q===3?0.6:1))); p.reps++; p.due=t+p.interval; p.s=(grade==='o'&&p.interval>=4)?'known':'learning';
-    if(grade==='o'){ rally++; if(rally>game.maxRally)game.maxRally=rally; const gain=10+Math.min(rally,12); sess.pts+=gain; game.points+=gain; sess.o++; flashRally(); spikeBall(); sfxPoint(); if(Math.random()<0.2) crossMinecraft(); if(rally%5===0){ sfxCheer(); ralleyBadge(); } }
+    if(grade==='o'){ rally++; if(rally>game.maxRally)game.maxRally=rally; const gain=10+Math.min(rally,12); sess.pts+=gain; game.points+=gain; sess.o++; const bb=game.built||0; game.built=bb+1; flashRally(); spikeBall(); sfxPoint(); if(buildOf(game.built).idx>buildOf(bb).idx) buildComplete(buildOf(game.built).cur); if(Math.random()<0.2) crossMinecraft(); if(rally%5===0){ sfxCheer(); ralleyBadge(); } }
     else { sess.d++; sess.pts+=4; game.points+=4; } if(grade==='d') requeue(w,3,2);
   }
   p.seen=t; prog[w.no]=p; saveProg(); saveGame(); qi++; updateHud(); if(qi>=queue.length) finishSession(); else showCard();
@@ -615,7 +645,7 @@ function setSize(v){ settings.size=parseInt(v); saveSet(); }
 function toggleAuto(){ settings.auto=!settings.auto; saveSet(); renderSettings(); }
 function toggleAutoEx(){ settings.autoEx=!settings.autoEx; saveSet(); renderSettings(); }
 function toggleSound(){ settings.sound=!settings.sound; saveSet(); renderSettings(); if(settings.sound){ AC(); sfxPoint(); } }
-function resetAll(){ if(confirm('学習記録・苦手・ランク・連続記録をすべて消します。よろしいですか？')){ prog={}; game={points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0}; saveProg(); saveGame(); renderHome(); alert('リセットしました'); go('home'); } }
+function resetAll(){ if(confirm('学習記録・苦手・ランク・連続記録をすべて消します。よろしいですか？')){ prog={}; game={points:0,streak:0,lastDay:null,maxRally:0,sets:0,sessions:0,built:0}; saveProg(); saveGame(); renderHome(); alert('リセットしました'); go('home'); } }
 function forceUpdate(){ if(!confirm('最新版に更新します。学習記録・ランク・連続日数はそのまま残ります。更新しますか？')) return; var done=function(){ try{location.reload(true);}catch(e){location.reload();} }; try{ if('serviceWorker' in navigator){ navigator.serviceWorker.getRegistrations().then(function(rs){ rs.forEach(function(r){ try{r.unregister();}catch(e){} }); }); } if(window.caches){ caches.keys().then(function(ks){ return Promise.all(ks.map(function(k){return caches.delete(k);})); }).then(done).catch(done); setTimeout(done,1800); } else done(); }catch(e){ done(); } }
 
 /* 起動 */
