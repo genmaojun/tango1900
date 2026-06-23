@@ -16,10 +16,10 @@
   @font-face{font-family:'JpDot';src:url('jp.ttf') format('truetype');font-display:swap;}
   :root, html[data-theme="volley"]{--bg:#0d0f15;--card:#171b24;--card2:#1f2532;--text:#f3f5fa;--muted:#9aa3b8;--primary:#ff6a1a;--primary-d:#e85d12;--accent:#ff8a3d;--line:#2a3142;--green:#2fd07a;--green-bg:#13301f;--amber:#ffc23d;--amber-bg:#33290f;--red:#ff5b4d;--red-bg:#34201d;--gold:#ffb02e;--shadow:0 10px 30px rgba(0,0,0,.5);}
   html[data-theme="dark"]{--bg:#0e1320;--card:#19202f;--card2:#212a3c;--text:#e9ecf5;--muted:#98a2ba;--primary:#5aa0ff;--primary-d:#4a8ff0;--accent:#7c83ff;--line:#2b3450;--green:#34d27b;--green-bg:#16321f;--amber:#ffce4d;--amber-bg:#2f2a14;--red:#ff6b5e;--red-bg:#39201d;--gold:#ffd24d;--shadow:0 10px 30px rgba(0,0,0,.45);}
-  html[data-theme="light"], html[data-theme="auto"]{--bg:#eef1f8;--card:#ffffff;--card2:#f4f6fb;--text:#1f2430;--muted:#7a8194;--primary:#ea5a17;--primary-d:#cf4d10;--accent:#1f6feb;--line:#e4e7f0;--green:#16a34a;--green-bg:#e9f7ee;--amber:#e6a700;--amber-bg:#fdf4dd;--red:#e1463b;--red-bg:#fdeceb;--gold:#f4b400;--shadow:0 10px 30px rgba(40,50,90,.12);}
+  html[data-theme="light"], html[data-theme="auto"]{--bg:#eef1f8;--card:#ffffff;--card2:#f4f6fb;--text:#1f2430;--muted:#5b6273;--primary:#ea5a17;--primary-d:#cf4d10;--accent:#1f6feb;--line:#e4e7f0;--green:#15803d;--green-bg:#e9f7ee;--amber:#e6a700;--amber-bg:#fdf4dd;--red:#c8281c;--red-bg:#fdeceb;--gold:#8c6a00;--shadow:0 10px 30px rgba(40,50,90,.12);}
   @media (prefers-color-scheme: dark){html[data-theme="auto"]{--bg:#0e1320;--card:#19202f;--card2:#212a3c;--text:#e9ecf5;--muted:#98a2ba;--primary:#5aa0ff;--primary-d:#4a8ff0;--accent:#7c83ff;--line:#2b3450;--green:#34d27b;--green-bg:#16321f;--amber:#ffce4d;--amber-bg:#2f2a14;--red:#ff6b5e;--red-bg:#39201d;--gold:#ffd24d;--shadow:0 10px 30px rgba(0,0,0,.45);}}
-  html[data-theme="minecraft"]{--bg:#3a2a1a;--card:#6b4f33;--card2:#7d5d3c;--text:#f7f3e9;--muted:#d6c8ac;--primary:#6cc24a;--primary-d:#57a13a;--accent:#84d957;--line:#281b0f;--green:#6cc24a;--green-bg:#2d3d1f;--amber:#e0a93c;--amber-bg:#3d3018;--red:#c0392b;--red-bg:#3a201d;--gold:#f0c419;--shadow:0 5px 0 rgba(0,0,0,.4);}
-  html[data-theme="minecraft2"]{--bg:#1c2e16;--card:#3f5e2c;--card2:#4d6e36;--text:#f1f8e8;--muted:#bcd0a4;--primary:#6cc24a;--primary-d:#54a038;--accent:#8bd957;--line:#16240f;--green:#6cc24a;--green-bg:#23371a;--amber:#e0a93c;--amber-bg:#3a3a18;--red:#d04a3b;--red-bg:#3a201d;--gold:#f0c419;--shadow:0 5px 0 rgba(0,0,0,.4);}
+  html[data-theme="minecraft"]{--bg:#3a2a1a;--card:#6b4f33;--card2:#7d5d3c;--text:#f7f3e9;--muted:#ece2cd;--primary:#6cc24a;--primary-d:#57a13a;--accent:#84d957;--line:#281b0f;--green:#6cc24a;--green-bg:#2d3d1f;--amber:#e0a93c;--amber-bg:#3d3018;--red:#c0392b;--red-bg:#3a201d;--gold:#f0c419;--shadow:0 5px 0 rgba(0,0,0,.4);}
+  html[data-theme="minecraft2"]{--bg:#1c2e16;--card:#3f5e2c;--card2:#4d6e36;--text:#f1f8e8;--muted:#dcebca;--primary:#6cc24a;--primary-d:#54a038;--accent:#8bd957;--line:#16240f;--green:#6cc24a;--green-bg:#23371a;--amber:#e0a93c;--amber-bg:#3a3a18;--red:#d04a3b;--red-bg:#3a201d;--gold:#f0c419;--shadow:0 5px 0 rgba(0,0,0,.4);}
   .crp-ico{vertical-align:middle;image-rendering:pixelated;}
   html[data-theme^="minecraft"] .panel,html[data-theme^="minecraft"] .face,html[data-theme^="minecraft"] .cta,html[data-theme^="minecraft"] .btn,html[data-theme^="minecraft"] .tile,html[data-theme^="minecraft"] .chip,html[data-theme^="minecraft"] .ans,html[data-theme^="minecraft"] .icon-btn,html[data-theme^="minecraft"] .flipbtn,html[data-theme^="minecraft"] .range-go,html[data-theme^="minecraft"] .rangein,html[data-theme^="minecraft"] .rankcard,html[data-theme^="minecraft"] .rc-badge,html[data-theme^="minecraft"] .rc-lv{border-radius:3px;}
   html[data-theme^="minecraft"] .ans,html[data-theme^="minecraft"] .btn,html[data-theme^="minecraft"] .cta,html[data-theme^="minecraft"] .flipbtn,html[data-theme^="minecraft"] .range-go,html[data-theme^="minecraft"] .mic-btn{box-shadow:0 4px 0 rgba(0,0,0,.4);border:2px solid rgba(0,0,0,.22);}
@@ -31,6 +31,14 @@
   html[data-theme^="minecraft"] .word,html[data-theme^="minecraft"] .mic-word{letter-spacing:.3px;}
   /* マイクラ系は暗い赤(--red)が茶/緑カードに埋もれるため、例文ハイライト語を高コントラストの金色に */
   html[data-theme^="minecraft"] .example .en .hl{color:#ffd24d;}
+  /* ★文字コントラスト改善(全テーマ・背景に合わせ高コントラスト化 井上指示2026-06-23):
+     マイクラ系の結果スタッツ数字/苦手マークは茶・緑カードに対し明色化、ライトはamberスタッツを濃ゴールド化 */
+  html[data-theme^="minecraft"] .stat.o b{color:#b4ec8a;}
+  html[data-theme^="minecraft"] .stat.d b{color:#ffd24d;}
+  html[data-theme^="minecraft"] .stat.x b{color:#ffb0a3;}
+  html[data-theme^="minecraft"] .weak-mark{color:#ff9b8a;}
+  html[data-theme="light"] .stat.d b{color:#8a6300;}
+  @media (prefers-color-scheme:light){html[data-theme="auto"] .stat.d b{color:#8a6300;}}
   .mc-logo-main{font-family:'PixelMC',monospace;font-size:18px;letter-spacing:1px;color:#c8c8c8;text-shadow:0 2px #707070,0 3px #4a4a4a,2px 3px #2a2a2a;display:inline-block;line-height:1.6;}
   .mc-logo small{font-family:-apple-system,"Hiragino Sans",sans-serif;letter-spacing:0;font-weight:600;}
   html[data-theme^="minecraft"] .chip b,html[data-theme^="minecraft"] .rc-rank,html[data-theme^="minecraft"] .rc-lv,html[data-theme^="minecraft"] .rc-xp,html[data-theme^="minecraft"] .rally,html[data-theme^="minecraft"] .score,html[data-theme^="minecraft"] .pcount,html[data-theme^="minecraft"] .ring-label,html[data-theme^="minecraft"] .stat b,html[data-theme^="minecraft"] .result-big{font-family:'PixelMC',-apple-system,sans-serif;}
@@ -101,7 +109,7 @@
   #answerArea{margin-bottom:18px;}
   .answer{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;} .answer.hidden{visibility:hidden;}
   .ans{border:none;border-radius:16px;padding:16px 3px;font-size:17px;font-weight:800;color:#fff;line-height:1.12;white-space:nowrap;overflow:hidden;} .ans:active{transform:translateY(1px) scale(.98);} .ans small{display:block;font-weight:600;font-size:10px;opacity:.92;margin-top:4px;white-space:nowrap;}
-  .ans.x{background:var(--red);} .ans.d{background:var(--amber);} .ans.o{background:var(--green);}
+  .ans.x{background:var(--red);} .ans.d{background:var(--amber);color:#3a2a00;} .ans.o{background:var(--green);}
   .reveal-hint{text-align:center;color:var(--muted);font-size:14px;padding:8px 0;}
   .flipbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:none;border-radius:18px;padding:18px;font-size:19px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--primary));box-shadow:var(--shadow);} .flipbtn:active{transform:translateY(1px) scale(.99);} .flipbtn .ic{font-size:22px;}
   .result-big{font-size:42px;text-align:center;} .result-msg{text-align:center;color:var(--muted);margin-top:2px;font-weight:700;}
